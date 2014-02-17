@@ -1,0 +1,41 @@
+#!/bin/ash
+# starts and shepherds the openvpn deamon
+# routes and ip rules are handled in the associated 
+# up/down scripts, see /usr/sbin/vpn_up and /usr/sbin/vpn_down
+                                                                                                                       
+alive=1
+ovpn_pid=0
+bye() { 
+	logger "$0 killed"
+	killall openvpn 2>/dev/null
+	alive=0
+}
+
+trap bye SIGTERM SIGHUP SIGINT
+
+# let the system start and settle down
+# sleep 60
+
+dead_c=0
+while [ $alive -eq 1 ] ; do
+
+	pidof openvpn 1>/dev/null 2>&1
+
+	if [ $? -ne 0 ] ; then
+
+		# to prevent a start of the openvpn deamon maybe we
+		# should check if there is an internet connection at all
+		
+		if [ $dead_c -ne 0 ] ; then
+			# if the openvpn client died hard we should cleanup the mess...
+			vpn_down
+			logger "openvpn died $dead_c times"
+		fi
+		dead_c=$(($dead_c +1))
+		# note: for some reason --down-pre won't work
+		openvpn --daemon openvpn --up /usr/sbin/vpn_up --down /usr/sbin/vpn_down --route-noexec --config /etc/openvpn/openvpn.ovpn --script-security 3 1>/dev/null 2>&1
+	fi
+
+	sleep 10
+done
+
