@@ -1,0 +1,22 @@
+#!/bin/sh
+# vpn up script
+# create routes for vpn in table vpn
+tun_dev=$1
+tun_mtu=$2
+link_mtu=$3
+ifconfig_local_ip=$4
+ifconfig_remote_ip=$5
+logger "openvpn routing setup ${tun_dev}@${ifconfig_local_ip}<-PtP->${ifconfig_remote_ip}"
+
+ip route flush table vpn
+
+ip route add ${ifconfig_remote_ip} dev ${tun_dev} proto kernel scope link src ${ifconfig_local_ip} table vpn
+#ip route add 10.129.0.1 via ${ifconfig_local_ip} dev ${tun_dev} table vpn
+ip route add 0.0.0.0/1 via ${ifconfig_local_ip} dev ${tun_dev} table vpn
+ip route add 128.0.0.0/1 via ${ifconfig_local_ip} dev ${tun_dev} table vpn
+
+ip route flush cache
+
+# per default - route public subnet over vpn connection to prevent
+# (accidently) packet flow over the direct connection
+/usr/sbin/public_net_vpn
