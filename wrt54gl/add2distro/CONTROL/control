@@ -1,0 +1,11 @@
+Package: freepackets-wrt54gl
+Version: 0.1
+Architecture: brcm47xx
+Depends: openvpn kmod-tun libopenssl liblzo iptables-mod-ipopt ip iptables-mod-conntrack-extra
+Maintainer: hecke <hecke@freepackets.org>
+Section: base
+Status: unknown ok not-installed
+Priority: optional
+Description: This package provides the configuration and scripts to run an open accesspoint using a VPN tunnel.
+Source: http://freepackets.org/software/
+Filename: freepackets_wrt54gl.ipk
