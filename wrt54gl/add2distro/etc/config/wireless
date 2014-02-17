@@ -1,0 +1,15 @@
+config 'wifi-device' 'radio0'
+	option type     mac80211
+	option channel  11
+	option phy	phy0
+	option hwmode   11g
+	option 'disabled' '0'
+
+config 'wifi-iface'
+	option 'device' 'radio0'
+	option 'mode' 'ap'
+ 	option 'ssid' 'freepackets_org'
+	option 'encryption' 'psk2+tkip+ccmp'
+ 	option 'key' 'thisissave'
+	option 'network' 'lan_vpn'
+
