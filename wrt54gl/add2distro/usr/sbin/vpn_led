@@ -1,0 +1,75 @@
+#!/bin/sh
+# controls the front LEDs of the WRT54GL (may also work with G/GS)
+########################################################################
+# LED                   interface                       state of
+# DMZ			/proc/diag/led/dmz		vpn/direct connection
+# CISCO Logo - white	/proc/diag/led/ses_white	openvpn started
+# CISCO Logo - yellow	/proc/diag/led/ses_orange	WLAN clients connected
+########################################################################
+#
+# status encoding:
+#
+#           public subnet   DMZ
+#    OVPN   uses vpn        led
+#     off   off             off
+#     on    off             off
+#     off   on              blink
+#     on    on              on
+#
+#    OVPN   CISCO white
+#     off   off
+#     on    on
+#
+#    WLAN     CISCO 
+#    clients  orange
+#     no       off
+#     yes      on
+#
+########################################################################
+
+vpn_mode=0
+ovpn=0
+dmz_led=0
+
+while [ 1 ] ; do 
+	if [ -f /var/lock/public_net_vpn ] ; then
+		vpn_mode=1
+	else
+		vpn_mode=0
+	fi
+
+	# openvpn running
+	pidof openvpn 1>/dev/null
+	if [ $? -eq 0 ] ; then
+		echo 1 > /proc/diag/led/ses_white
+		ovpn=1
+	else
+		ovpn=0
+		echo 0 > /proc/diag/led/ses_white
+	fi
+
+	# public subnet Internet access mode
+	if [ $vpn_mode -eq 1 ] && [ $ovpn -eq 1 ] ; then
+		echo 1 > /proc/diag/led/dmz
+	elif [ $vpn_mode -eq 1 ] && [ $ovpn -ne 1 ] ; then
+		if [ $dmz_led -eq 1 ] ; then
+			echo 0 > /proc/diag/led/dmz
+			dmz_led=0
+		else
+			echo 1 > /proc/diag/led/dmz
+			dmz_led=1
+		fi
+	else
+		echo 0 > /proc/diag/led/dmz
+	fi
+
+	# WLAN clients present
+	if [ $(iw dev wlan0 station dump | wc -l) -gt 0 ] ; then
+		echo 1 > /proc/diag/led/ses_orange	
+	else
+		echo 0 > /proc/diag/led/ses_orange
+	fi
+
+	sleep 1
+done
+
