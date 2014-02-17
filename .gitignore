@@ -1,0 +1,14 @@
+*~
+private_local/
+control.tar.gz
+data.tar.gz
+wrt54gl/add2distro/etc/openvpn/openvpn.ovpn
+wrt54gl/add2distro/etc/openvpn/password.txt
+wrt54gl/package/freepackets_wrt54gl.ipk
+conffiles
+debian-binary
+wrt54gl/package/Packages
+openwrt-wrt54g-squashfs.bin
+openwrt-brcm47xx-squashfs.trx
+wrt54gl/firmware/OpenWrt-ImageBuilder-brcm47xx-for-Linux-i686/tmp/*
+
