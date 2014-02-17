@@ -1,0 +1,28 @@
+#!/bin/sh
+# use direct connection to the internet for the public subnet
+# NOTE_1: this is dangerous if you run a public accesspoint !!
+# NOTE_2: delete rule/tables even if they don't exist to prevent
+# double entries caused by malfunctioning scripts
+#############################################################
+logger "route public subnet over direct connection"
+rm -f /var/lock/public_net_vpn
+touch /var/lock/public_net_direct
+
+# delete all rules used to select the routing table for packets marked with 0x17
+while [ 1 ] ; do
+	ip rule del fwmark 23 2>/dev/null
+	if [ $? -ne 0 ] ; then
+		break
+	fi
+done
+# use main table for clients from the public subnet
+ip rule add fwmark 23 table main
+
+# add masquerading for all over eth0.2 (wan) also for clients of the 
+# public subnet
+iptables -F masq -t nat
+iptables -A masq -t nat -o eth0.2 -j MASQUERADE
+
+ip route flush cache
+
+
