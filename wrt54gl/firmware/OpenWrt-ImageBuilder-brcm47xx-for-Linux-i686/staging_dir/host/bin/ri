@@ -1,0 +1,5 @@
+#!/home/jow/devel/openwrt/10.03.1/brcm47xx/staging_dir/host/bin/ruby
+
+require 'rdoc/ri/driver'
+
+RDoc::RI::Driver.run ARGV

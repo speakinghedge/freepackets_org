@@ -1,0 +1,2023 @@
+Source-Makefile: target/linux/avr32/Makefile
+Target: avr32
+Target-Board: avr32
+Target-Kernel: 2.6
+Target-Name: Atmel AVR32
+Target-Path: /home/jow/devel/openwrt/10.03.1/brcm47xx
+Target-Arch: avr32
+Target-Arch-Packages: avr32
+Target-Features: gpio squashfs
+Target-Depends: 
+Target-Optimization: -Os -pipe -funit-at-a-time
+Linux-Version: 2.6.32.27
+Linux-Release: 1
+Linux-Kernel-Arch: avr32
+Target-Description:
+  Build firmware images for ATNGW100 board
+@@
+Default-Packages: base-files libc libgcc busybox dropbear mtd uci opkg udevtrigger hotplug2 dnsmasq iptables ppp ppp-mod-pppoe kmod-ipt-nathelper firewall
+
+Source-Makefile: target/linux/xburst/Makefile
+Target: xburst
+Target-Board: xburst
+Target-Kernel: 2.6
+Target-Name: Ingenic XBurst
+Target-Path: /home/jow/devel/openwrt/10.03.1/brcm47xx
+Target-Arch: mipsel
+Target-Arch-Packages: xburst
+Target-Features: audio display gpio jffs2 targz ubifs
+Target-Depends: 
+Target-Optimization: -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time
+Linux-Version: 2.6.32.27
+Linux-Release: 1
+Linux-Kernel-Arch: mips
+Target-Description:
+	Build firmware images for XBurst JZ47x0 based boards.
+@@
+Default-Packages: base-files libc libgcc busybox dropbear mtd uci opkg udevtrigger hotplug2 
+Target: xburst/qi_lb60
+Target-Board: xburst
+Target-Kernel: 2.6
+Target-Name: QI Ben Nanonote (qi_lb60)
+Target-Path: target/linux/xburst
+Target-Arch: mipsel
+Target-Arch-Packages: xburst
+Target-Features: audio display gpio jffs2 targz ubifs
+Target-Depends: 
+Target-Optimization: -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time
+Linux-Version: 2.6.32.27
+Linux-Release: 1
+Linux-Kernel-Arch: mips
+Target-Description:
+	Build firmware images for XBurst JZ47x0 based boards.
+@@
+Default-Packages: base-files libc libgcc busybox dropbear mtd uci opkg udevtrigger hotplug2  kmod-sound-core kmod-sound-soc-core kmod-sound-soc-jz4740 kmod-sound-soc-jzcodec kmod-sound-soc-qilb60 
+Target: xburst/n516
+Target-Board: xburst
+Target-Kernel: 2.6
+Target-Name: Hanvon N516 e-book reader
+Target-Path: target/linux/xburst
+Target-Arch: mipsel
+Target-Arch-Packages: xburst
+Target-Features: audio display gpio jffs2 targz ubifs
+Target-Depends: 
+Target-Optimization: -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time
+Linux-Version: 2.6.32.27
+Linux-Release: 1
+Linux-Kernel-Arch: mips
+Target-Description:
+	Build firmware images for XBurst JZ47x0 based boards.
+@@
+Default-Packages: base-files libc libgcc busybox dropbear mtd uci opkg udevtrigger hotplug2  kmod-sound-core kmod-sound-soc-core kmod-sound-soc-jz4740 kmod-sound-soc-jzcodec kmod-sound-soc-n516 
+Target: xburst/n526
+Target-Board: xburst
+Target-Kernel: 2.6
+Target-Name: Hanvon N526 e-book reader
+Target-Path: target/linux/xburst
+Target-Arch: mipsel
+Target-Arch-Packages: xburst
+Target-Features: audio display gpio jffs2 targz ubifs
+Target-Depends: 
+Target-Optimization: -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time
+Linux-Version: 2.6.32.27
+Linux-Release: 1
+Linux-Kernel-Arch: mips
+Target-Description:
+	Build firmware images for XBurst JZ47x0 based boards.
+@@
+Default-Packages: base-files libc libgcc busybox dropbear mtd uci opkg udevtrigger hotplug2  kmod-sound-core kmod-sound-soc-core kmod-sound-soc-jz4740 kmod-sound-soc-jzcodec kmod-sound-soc-n516 
+
+Source-Makefile: target/linux/brcm47xx/Makefile
+Target: brcm47xx
+Target-Board: brcm47xx
+Target-Kernel: 2.6
+Target-Name: Broadcom BCM947xx/953xx
+Target-Path: /home/jow/devel/openwrt/10.03.1/brcm47xx
+Target-Arch: mipsel
+Target-Arch-Packages: brcm47xx
+Target-Features: gpio pci pcmcia squashfs usb
+Target-Depends: 
+Target-Optimization: -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time
+Linux-Version: 2.6.32.27
+Linux-Release: 1
+Linux-Kernel-Arch: mips
+Target-Description:
+	Build firmware images for Broadcom based routers
+	(e.g. Netgear WGT634U)
+@@
+Default-Packages: base-files libc libgcc busybox dropbear mtd uci opkg udevtrigger hotplug2 dnsmasq iptables ppp ppp-mod-pppoe kmod-ipt-nathelper firewall wpad-mini kmod-switch kmod-diag nvram
+Target-Profile: Broadcom-b43
+Target-Profile-Name: Broadcom BCM43xx WiFi (default)
+Target-Profile-Packages: kmod-b43 kmod-b43legacy
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Package set compatible with hardware using Broadcom BCM43xx cards
+@@
+
+Target-Profile: Atheros
+Target-Profile-Name: Atheros WiFi
+Target-Profile-Packages: kmod-madwifi
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Package set compatible with hardware using Atheros WiFi cards
+@@
+
+Target-Profile: Atheros-ath5k
+Target-Profile-Name: Atheros WiFi (atk5k)
+Target-Profile-Packages: kmod-ath5k
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Package set compatible with hardware using Atheros WiFi cards
+@@
+
+Target-Profile: None
+Target-Profile-Name: No WiFi
+Target-Profile-Packages: -wpad-mini
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Package set without WiFi support
+@@
+
+Target-Profile: WGT634U
+Target-Profile-Name: Netgear WGT634U
+Target-Profile-Packages: kmod-madwifi kmod-usb-core kmod-usb-ohci kmod-usb2 kmod-ocf kmod-crypto-ocf-ubsec-ssb
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Package set compatible with the Netgear WGT634U. Contains USB support
+@@
+
+Target-Profile: WL500GPv1
+Target-Profile-Name: ASUS WL-500g Premium v1 (Atheros WiFi)
+Target-Profile-Packages: kmod-madwifi kmod-usb-core kmod-usb-uhci kmod-usb2
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Package set optimized for the WL-500g Premium v1 with USB and Atheros WiFi card support
+@@
+
+Target-Profile: WRT350Nv1
+Target-Profile-Name: Linksys WRT350Nv1
+Target-Profile-Packages: kmod-usb-core kmod-usb-ohci kmod-usb2 kmod-ssb-gige kmod-ocf-ubsec-ssb
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Package set compatible with the Linksys WRT350Nv1. Contains USB support
+@@
+
+Target-Profile: WRTSL54GS
+Target-Profile-Name: Linksys WRTSL54GS
+Target-Profile-Packages: kmod-usb-core kmod-usb-ohci kmod-usb2 kmod-usb-storage kmod-scsi-core kmod-fs-ext3 e2fsprogs kmod-b43
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Package set compatible with the Linksys WRTSL54GS. Contains USB support
+@@
+
+
+Source-Makefile: target/linux/rb532/Makefile
+Target: rb532
+Target-Board: rb532
+Target-Kernel: 2.6
+Target-Name: Mikrotik RouterBoard 532
+Target-Path: /home/jow/devel/openwrt/10.03.1/brcm47xx
+Target-Arch: mipsel
+Target-Arch-Packages: rb532
+Target-Features: gpio jffs2 pci targz
+Target-Depends: 
+Target-Optimization: -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time
+Linux-Version: 2.6.32.27
+Linux-Release: 1
+Linux-Kernel-Arch: mips
+Target-Description:
+
+@@
+Default-Packages: base-files libc libgcc busybox dropbear mtd uci opkg udevtrigger hotplug2 dnsmasq iptables ppp ppp-mod-pppoe kmod-ipt-nathelper firewall wpad-mini kmod-madwifi kmod-input-rb532
+
+Source-Makefile: target/linux/uml/Makefile
+Target: uml
+Target-Board: uml
+Target-Kernel: 2.6
+Target-Name: User Mode Linux
+Target-Path: /home/jow/devel/openwrt/10.03.1/brcm47xx
+Target-Arch: i386
+Target-Arch-Packages: uml
+Target-Features: audio ext2
+Target-Depends: 
+Target-Optimization: -O2 -pipe -march=i486 -funit-at-a-time
+Linux-Version: 2.6.30.10
+Linux-Release: 1
+Linux-Kernel-Arch: um
+Target-Description:
+
+@@
+Default-Packages: base-files libc libgcc busybox dropbear mtd uci opkg udevtrigger hotplug2 dnsmasq iptables ppp ppp-mod-pppoe kmod-ipt-nathelper firewall wpad-mini kmod-mac80211-hwsim
+
+Source-Makefile: target/linux/lantiq/Makefile
+Target: lantiq
+Target-Board: lantiq
+Target-Kernel: 2.6
+Target-Name: Lantiq GPON/XWAY
+Target-Path: /home/jow/devel/openwrt/10.03.1/brcm47xx
+Target-Arch: mips
+Target-Arch-Packages: lantiq
+Target-Features: gpio jffs2 squashfs
+Target-Depends: 
+Target-Optimization: -Os -pipe -mips32r2 -mtune=mips32r2 -fno-caller-saves
+Linux-Version: 2.6.32.33
+Linux-Release: 1
+Linux-Kernel-Arch: mips
+Target-Description:
+	Build firmware images for Lantiq SoC
+@@
+Default-Packages: base-files libc libgcc busybox dropbear mtd uci opkg udevtrigger hotplug2 dnsmasq iptables ppp ppp-mod-pppoe kmod-ipt-nathelper firewall
+Target: lantiq/falcon
+Target-Board: lantiq
+Target-Kernel: 2.6
+Target-Name: Falcon
+Target-Path: target/linux/lantiq
+Target-Arch: mips
+Target-Arch-Packages: lantiq
+Target-Features: gpio jffs2 squashfs
+Target-Depends: 
+Target-Optimization: -Os -pipe -mips32r2 -mtune=mips32r2 -fno-caller-saves
+Linux-Version: 2.6.32.33
+Linux-Release: 1
+Linux-Kernel-Arch: mips
+Target-Description:
+	Lantiq Falcon
+@@
+Default-Packages: base-files libc libgcc busybox dropbear mtd uci opkg udevtrigger hotplug2 dnsmasq iptables ppp ppp-mod-pppoe kmod-ipt-nathelper firewall kmod-ifxos gpon-base-files kmod-leds-gpio kmod-gpon-optic-drv gpon-optic-drv kmod-gpon-onu-drv gpon-onu-drv gpon-pe-firmware gpon-omci-api gpon-omci-onu gpon-luci
+Target-Profile: Generic
+Target-Profile-Name: Generic - all boards
+Target-Profile-Packages: kmod-leds-gpio kmod-dm9000 kmod-i2c-core kmod-i2c-algo-bit kmod-i2c-gpio kmod-eeprom-at24 kmod-spi-bitbang kmod-spi-gpio kmod-eeprom-at25 gpon-dti-agent
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+
+@@
+
+Target-Profile: EASY98000
+Target-Profile-Name: EASY98000
+Target-Profile-Packages: kmod-dm9000 kmod-i2c-core kmod-i2c-algo-bit kmod-i2c-gpio kmod-eeprom-at24 kmod-spi-bitbang kmod-spi-gpio kmod-eeprom-at25
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Lantiq EASY98000 evalkit
+@@
+
+Target-Profile: EASY98020
+Target-Profile-Name: EASY98020
+Target-Profile-Packages: kmod-leds-gpio uboot-easy98020
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Lantiq EASY98020 evalkit
+@@
+
+Target: lantiq/danube
+Target-Board: lantiq
+Target-Kernel: 2.6
+Target-Name: Danube
+Target-Path: target/linux/lantiq
+Target-Arch: mips
+Target-Arch-Packages: lantiq
+Target-Features: atm gpio jffs2 pci squashfs usb
+Target-Depends: 
+Target-Optimization: -Os -pipe -mips32r2 -mtune=mips32r2 -fno-caller-saves
+Linux-Version: 2.6.32.33
+Linux-Release: 1
+Linux-Kernel-Arch: mips
+Target-Description:
+	Lantiq Danube/Twinpass
+@@
+Default-Packages: base-files libc libgcc busybox dropbear mtd uci opkg udevtrigger hotplug2 dnsmasq iptables ppp ppp-mod-pppoe kmod-ipt-nathelper firewall kmod-pppoa ppp-mod-pppoa linux-atm atm-tools br2684ctl kmod-ltq-dsl ltq-dsl-app swconfig
+Target-Profile: Generic
+Target-Profile-Name: Generic - all boards
+Target-Profile-Packages: kmod-leds-gpio button-hotplug
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+
+@@
+
+Target-Profile: EASY50712
+Target-Profile-Name: EASY50712
+Target-Profile-Packages: kmod-usb-core kmod-usb-dwc-otg kmod-leds-gpio
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Lantiq EASY50712 evalkit
+@@
+
+Target-Profile: ARV3527P
+Target-Profile-Name: ARV3527P - Arcor Easybox 401
+Target-Profile-Packages: kmod-ledtrig-netdev kmod-leds-gpio kmod-button-hotplug kmod-ltq-dsl-firmware-b
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Package set optimized for the ARV3527P
+@@
+
+Target-Profile: ARV4510PW
+Target-Profile-Name: ARV4510PW - Wippies Homebox
+Target-Profile-Packages: kmod-usb-core kmod-ledtrig-netdev kmod-ledtrig-usbdev kmod-leds-gpio kmod-button-hotplug kmod-rt61-pci wpad-mini kmod-ltq-dsl-firmware-a
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Package set optimized for the ARV4518PW
+@@
+
+Target-Profile: ARV4518PW
+Target-Profile-Name: ARV4518PW - SMC7908A
+Target-Profile-Packages: kmod-usb-core kmod-usb-dwc-otg kmod-ledtrig-netdev kmod-ledtrig-usbdev kmod-leds-gpio kmod-button-hotplug kmod-madwifi wpad-mini kmod-ltq-dsl-firmware-a
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Package set optimized for the ARV4518PW
+@@
+
+Target-Profile: ARV4520PW
+Target-Profile-Name: ARV4520PW - Arcor Easybox 800
+Target-Profile-Packages: kmod-usb-core kmod-usb-dwc-otg kmod-ledtrig-netdev kmod-ledtrig-usbdev kmod-leds-gpio kmod-button-hotplug kmod-rt61-pci wpad-mini kmod-ltq-dsl-firmware-b 
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Package set optimized for the ARV4520PW
+@@
+
+Target-Profile: ARV4525PW
+Target-Profile-Name: ARV4525PW - Speedport W502V
+Target-Profile-Packages: kmod-usb-core kmod-usb-dwc-otg kmod-ledtrig-netdev kmod-ledtrig-usbdev kmod-leds-gpio kmod-button-hotplug kmod-madwifi wpad-mini kmod-ltq-dsl-firmware-b
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Package set optimized for the ARV4525PW
+@@
+
+Target-Profile: ARV452CPW
+Target-Profile-Name: ARV452CPW - Arcor Easybox 801
+Target-Profile-Packages: kmod-usb-core kmod-usb-dwc-otg kmod-ledtrig-netdev kmod-ledtrig-usbdev kmod-leds-gpio kmod-button-hotplug kmod-madwifi wpad-mini kmod-ltq-dsl-firmware-b
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Package set optimized for the ARV452CPW
+@@
+
+Target-Profile: ARV752DPW22
+Target-Profile-Name: ARV752DPW22 - Arcor Easybox 803
+Target-Profile-Packages: kmod-usb-core kmod-usb2 kmod-usb-uhci kmod-usb-dwc-otg kmod-ledtrig-netdev kmod-ledtrig-usbdev kmod-leds-gpio kmod-button-hotplug kmod-ltq-dsl-firmware-b
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Package set optimized for the ARV752PW22
+@@
+
+Target-Profile: ARV7518PW
+Target-Profile-Name: ARV7518PW - ASTORIA
+Target-Profile-Packages: kmod-usb-core kmod-usb-dwc-otg kmod-ledtrig-netdev kmod-ledtrig-usbdev kmod-leds-gpio kmod-button-hotplug kmod-ath9k wpad-mini ltq-dsl-firmware-a swconfig
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Package set optimized for the ARV7518PW
+@@
+
+Target-Profile: GIGASX76X
+Target-Profile-Name: GIGASX76X - Gigaset SX761,SX762,SX763
+Target-Profile-Packages: kmod-usb-core kmod-usb-dwc-otg kmod-leds-gpio kmod-ltq-dsl-firmware-b kmod-ledtrig-usbdev 
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Package set optimized for the Gigaset SX76X routers
+@@
+
+Target: lantiq/ar9
+Target-Board: lantiq
+Target-Kernel: 2.6
+Target-Name: AR9
+Target-Path: target/linux/lantiq
+Target-Arch: mips
+Target-Arch-Packages: lantiq
+Target-Features: atm gpio jffs2 pci squashfs usb
+Target-Depends: 
+Target-Optimization: -Os -pipe -mips32r2 -mtune=mips32r2 -fno-caller-saves
+Linux-Version: 2.6.32.33
+Linux-Release: 1
+Linux-Kernel-Arch: mips
+Target-Description:
+	Lantiq XWAY (danube/twinpass/ar9)
+@@
+Default-Packages: base-files libc libgcc busybox dropbear mtd uci opkg udevtrigger hotplug2 dnsmasq iptables ppp ppp-mod-pppoe kmod-ipt-nathelper firewall kmod-pppoa ppp-mod-pppoa linux-atm atm-tools br2684ctl kmod-ltq-dsl ltq-dsl-app swconfig
+Target-Profile: Generic
+Target-Profile-Name: Generic - all boards
+Target-Profile-Packages: kmod-leds-gpio button-hotplug
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+
+@@
+
+Target-Profile: EASY50812
+Target-Profile-Name: EASY50812
+Target-Profile-Packages: kmod-usb-core kmod-usb-dwc-otg kmod-leds-gpio
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Lantiq EASY50812 evalkit
+@@
+
+Target-Profile: DGN3500B
+Target-Profile-Name: DGN3500B
+Target-Profile-Packages: kmod-usb-core kmod-usb-dwc-otg kmod-leds-gpio
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Netgear DGN3500B
+@@
+
+Target: lantiq/ase
+Target-Board: lantiq
+Target-Kernel: 2.6
+Target-Name: Amazon-SE
+Target-Path: target/linux/lantiq
+Target-Arch: mips
+Target-Arch-Packages: lantiq
+Target-Features: atm gpio jffs2 squashfs
+Target-Depends: 
+Target-Optimization: -Os -pipe -mips32r2 -mtune=mips32r2 -fno-caller-saves
+Linux-Version: 2.6.32.33
+Linux-Release: 1
+Linux-Kernel-Arch: mips
+Target-Description:
+	Lantiq ASE
+@@
+Default-Packages: base-files libc libgcc busybox dropbear mtd uci opkg udevtrigger hotplug2 dnsmasq iptables ppp ppp-mod-pppoe kmod-ipt-nathelper firewall kmod-pppoa ppp-mod-pppoa linux-atm atm-tools br2684ctl kmod-ltq-dsl ltq-dsl-app
+Target-Profile: Generic
+Target-Profile-Name: Generic - all boards
+Target-Profile-Packages: kmod-leds-gpio button-hotplug
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+
+@@
+
+Target-Profile: EASY50601
+Target-Profile-Name: EASY50601
+Target-Profile-Packages: kmod-usb-core kmod-usb-dwc-otg kmod-leds-gpio
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Lantiq EASY50601 evalkit
+@@
+
+
+Source-Makefile: target/linux/ppc44x/Makefile
+Target: ppc44x
+Target-Board: ppc44x
+Target-Kernel: 2.6
+Target-Name: AMCC/IBM PPC44x
+Target-Path: /home/jow/devel/openwrt/10.03.1/brcm47xx
+Target-Arch: powerpc
+Target-Arch-Packages: ppc44x
+Target-Features: gpio pci pcie squashfs usb
+Target-Depends: 
+Target-Optimization: -Os -pipe -funit-at-a-time -mcpu=440
+Linux-Version: 2.6.32.27
+Linux-Release: 1
+Linux-Kernel-Arch: powerpc
+Target-Description:
+	Build firmware images for AMCC/IBM PPC44x based boards.
+@@
+Default-Packages: base-files libc libgcc busybox dropbear mtd uci opkg udevtrigger hotplug2 dnsmasq iptables ppp ppp-mod-pppoe kmod-ipt-nathelper firewall
+
+Source-Makefile: target/linux/rdc/Makefile
+Target: rdc
+Target-Board: rdc
+Target-Kernel: 2.6
+Target-Name: RDC 321x
+Target-Path: /home/jow/devel/openwrt/10.03.1/brcm47xx
+Target-Arch: i386
+Target-Arch-Packages: rdc
+Target-Features: gpio jffs2 pci pcmcia squashfs usb
+Target-Depends: 
+Target-Optimization: -Os -pipe -march=i486 -mtune=i486 -funit-at-a-time
+Linux-Version: 2.6.30.10
+Linux-Release: 1
+Linux-Kernel-Arch: x86
+Target-Description:
+        Build firmware images for RDC321x based routers
+        (e.g. Airlink101 AR525W, Linksys WRT54GR, Sitecom WL-153)
+@@
+Default-Packages: base-files libc libgcc busybox dropbear mtd uci opkg udevtrigger hotplug2 dnsmasq iptables ppp ppp-mod-pppoe kmod-ipt-nathelper firewall kmod-llc kmod-stp kmod-bridge kmod-8021q wpad-mini kmod-r6040 kmod-input-core kmod-input-polldev kmod-input-gpio-buttons kmod-button-hotplug
+Target-Profile: ar525w
+Target-Profile-Name: Airlink AR525W
+Target-Profile-Packages: kmod-rt61-pci
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+
+@@
+
+Target-Profile: bifferboard
+Target-Profile-Name: Bifferboard
+Target-Profile-Packages: 
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+
+@@
+
+Target-Profile: r8610
+Target-Profile-Name: RDC R8610 Evaluation Board
+Target-Profile-Packages: kmod-usb-core kmod-usb-ohci kmod-usb2 kmod-hwmon-core kmod-hwmon-w83627hf kmod-ide-core kmod-ide-it821x kmod-rtc-core kmod-rtc-m48t86 kmod-fs-ext2 kmod-fs-ext3
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+
+@@
+
+Target-Profile: sitecom
+Target-Profile-Name: Devices from Sitecom (WL-153, DC-230)
+Target-Profile-Packages: kmod-rt61-pci kmod-usb-core kmod-usb-ohci kmod-usb2
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+
+@@
+
+
+Source-Makefile: target/linux/ar7/Makefile
+Target: ar7
+Target-Board: ar7
+Target-Kernel: 2.6
+Target-Name: TI AR7
+Target-Path: /home/jow/devel/openwrt/10.03.1/brcm47xx
+Target-Arch: mipsel
+Target-Arch-Packages: ar7
+Target-Features: atm gpio jffs2 squashfs
+Target-Depends: 
+Target-Optimization: -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time
+Linux-Version: 2.6.32.27
+Linux-Release: 1
+Linux-Kernel-Arch: mips
+Target-Description:
+	Build firmware images for TI AR7 based routers.
+@@
+Default-Packages: base-files libc libgcc busybox dropbear mtd uci opkg udevtrigger hotplug2 dnsmasq iptables ppp ppp-mod-pppoe kmod-ipt-nathelper firewall kmod-pppoa ppp-mod-pppoa linux-atm atm-tools br2684ctl kmod-acx swconfig
+Target-Profile: Annex-A
+Target-Profile-Name: Annex-A DSL firmware (default)
+Target-Profile-Packages: kmod-sangam-atm-annex-a
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Package set compatible with Annex-A DSL lines (most countries).
+@@
+
+Target-Profile: Annex-B
+Target-Profile-Name: Annex-B DSL firmware
+Target-Profile-Packages: kmod-sangam-atm-annex-b
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Package set compatible with Annex-B DSL lines (Germany).
+@@
+
+Target-Profile: Texas
+Target-Profile-Name: Texas Instruments WiFi (mac80211)
+Target-Profile-Packages: kmod-acx-mac80211
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Package set compatible with hardware using Texas Instruments WiFi cards
+	using the mac80211 driver.
+@@
+
+Target-Profile: None
+Target-Profile-Name: No WiFi
+Target-Profile-Packages: 
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Package set without WiFi support
+@@
+
+
+Source-Makefile: target/linux/x86/Makefile
+Target: x86
+Target-Board: x86
+Target-Kernel: 2.6
+Target-Name: x86
+Target-Path: /home/jow/devel/openwrt/10.03.1/brcm47xx
+Target-Arch: i386
+Target-Arch-Packages: x86
+Target-Features: display ext2 jffs2 pci pcmcia squashfs targz usb vdi vmdk
+Target-Depends: 
+Target-Optimization: -O2 -pipe -march=i486 -funit-at-a-time
+Linux-Version: 2.6.32.27
+Linux-Release: 1
+Linux-Kernel-Arch: x86
+Target-Description:
+
+@@
+Default-Packages: base-files libc libgcc busybox dropbear mtd uci opkg udevtrigger hotplug2 dnsmasq iptables ppp ppp-mod-pppoe kmod-ipt-nathelper firewall
+Target: x86/generic
+Target-Board: x86
+Target-Kernel: 2.6
+Target-Name: Generic
+Target-Path: target/linux/x86
+Target-Arch: i386
+Target-Arch-Packages: x86
+Target-Features: display ext2 jffs2 pci pcie pcmcia squashfs targz usb vdi vmdk
+Target-Depends: 
+Target-Optimization: -O2 -pipe -march=i486 -funit-at-a-time
+Linux-Version: 2.6.32.27
+Linux-Release: 1
+Linux-Kernel-Arch: x86
+Target-Description:
+	Build firmware images for x86 based boards 
+	(e.g : Soekris, ...)
+@@
+Default-Packages: base-files libc libgcc busybox dropbear mtd uci opkg udevtrigger hotplug2 dnsmasq iptables ppp ppp-mod-pppoe kmod-ipt-nathelper firewall
+Target-Profile: Generic
+Target-Profile-Name: Generic
+Target-Profile-Packages: kmod-3c59x kmod-e100 kmod-e1000 kmod-natsemi kmod-ne2k-pci kmod-pcnet32 kmod-8139too kmod-r8169 kmod-sis900 kmod-tg3 kmod-via-rhine kmod-via-velocity
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Generic Profile
+@@
+
+Target-Profile: Alix
+Target-Profile-Name: PCEngines Alix
+Target-Profile-Packages: kmod-via-rhine kmod-leds-alix
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+        Package set compatible with the PCEngines Alix. Contains VIA Rhine III VT6105M and LED support
+@@
+
+Target-Profile: Soekris45xx
+Target-Profile-Name: Soekris Net45xx
+Target-Profile-Packages: kmod-natsemi kmod-leds-net48xx kmod-sc520-wdt
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+        Package set compatible with the Soekris Net45xx. Net4511 and 4521 need PCMCIA Cardbus support. Please add manually.
+@@
+
+Target-Profile: Soekris48xx
+Target-Profile-Name: Soekris Net48xx
+Target-Profile-Packages: kmod-i2c-scx200 kmod-natsemi kmod-leds-net48xx kmod-scx200-gpio kmod-scx200-wdt kmod-hwmon-pc87360
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+        Package set compatible with the Soekris Net4801. Contains I2C/LEDS/GPIO/Sensors support
+@@
+
+Target-Profile: Wrap
+Target-Profile-Name: PCEngines WRAP
+Target-Profile-Packages: kmod-i2c-scx200 kmod-natsemi kmod-leds-wrap kmod-scx200-gpio kmod-scx200-wdt kmod-hwmon-pc87360
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Package set compatible with the PCEngines WRAP. Contains I2C/LEDS/GPIO/Sensors support
+@@
+
+Target: x86/olpc
+Target-Board: x86
+Target-Kernel: 2.6
+Target-Name: OLPC XO-1
+Target-Path: target/linux/x86
+Target-Arch: i386
+Target-Arch-Packages: x86
+Target-Features: display ext2 jffs2 pci pcmcia squashfs targz usb vdi vmdk
+Target-Depends: 
+Target-Optimization: -O2 -pipe -march=i486 -funit-at-a-time
+Linux-Version: 2.6.32.27
+Linux-Release: 1
+Linux-Kernel-Arch: x86
+Target-Description:
+
+@@
+Default-Packages: base-files libc libgcc busybox dropbear mtd uci opkg udevtrigger hotplug2 dnsmasq iptables ppp ppp-mod-pppoe kmod-ipt-nathelper firewall kmod-natsemi kmod-ne2k-pci kmod-libertas
+Target: x86/xen_domu
+Target-Board: x86
+Target-Kernel: 2.6
+Target-Name: Xen Paravirt Guest
+Target-Path: target/linux/x86
+Target-Arch: i386
+Target-Arch-Packages: x86
+Target-Features: display ext2 jffs2 pci pcmcia squashfs targz usb vdi vmdk
+Target-Depends: 
+Target-Optimization: -O2 -pipe -march=i486 -funit-at-a-time
+Linux-Version: 2.6.32.27
+Linux-Release: 1
+Linux-Kernel-Arch: x86
+Target-Description:
+
+@@
+Default-Packages: base-files libc libgcc busybox dropbear mtd uci opkg udevtrigger hotplug2 dnsmasq iptables ppp ppp-mod-pppoe kmod-ipt-nathelper firewall kmod-xen-fs kmod-xen-evtchn kmod-xen-netdev kmod-xen-kbddev
+Target: x86/ep80579
+Target-Board: x86
+Target-Kernel: 2.6
+Target-Name: Intel EP80579
+Target-Path: target/linux/x86
+Target-Arch: i386
+Target-Arch-Packages: x86
+Target-Features: display ext2 jffs2 pci pcmcia squashfs targz usb vdi vmdk
+Target-Depends: 
+Target-Optimization: -O2 -pipe -march=i486 -funit-at-a-time
+Linux-Version: 2.6.32.27
+Linux-Release: 1
+Linux-Kernel-Arch: x86
+Target-Description:
+	Build firmware images for Intel EP80579 based boards
+	(e.g : ADI Engineering Ocracoke Island)
+@@
+Default-Packages: base-files libc libgcc busybox dropbear mtd uci opkg udevtrigger hotplug2 dnsmasq iptables ppp ppp-mod-pppoe kmod-ipt-nathelper firewall kmod-ep80579-can kmod-ep80579-eth kmod-ep80579-misc kmod-usb-core kmod-usb2 kmod-usb-hid kmod-usb-uhci
+
+Source-Makefile: target/linux/brcm-2.4/Makefile
+Target: brcm-2.4
+Target-Board: brcm-2.4
+Target-Kernel: 2.4
+Target-Name: Broadcom BCM947xx/953xx [2.4]
+Target-Path: /home/jow/devel/openwrt/10.03.1/brcm47xx
+Target-Arch: mipsel
+Target-Arch-Packages: brcm-2.4
+Target-Features: pci pcmcia squashfs usb
+Target-Depends: 
+Target-Optimization: -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time
+Linux-Version: 2.4.37.9
+Linux-Release: 1
+Linux-Kernel-Arch: mips
+Target-Description:
+	Build firmware images for Broadcom based routers
+	(e.g. Linksys WRT54G(S), Asus WL-500g, Motorola WR850G)
+@@
+Default-Packages: base-files libc libgcc busybox dropbear mtd uci opkg dnsmasq iptables ppp ppp-mod-pppoe kmod-ipt-nathelper firewall kmod-switch kmod-diag nvram 
+Target-Profile: Broadcom
+Target-Profile-Name: Generic, Broadcom WiFi (default)
+Target-Profile-Packages: kmod-brcm-wl wlc nas kmod-wlcompat
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Default package set compatible with most BCM947xx hardware
+@@
+
+Target-Profile: BroadcomMimo
+Target-Profile-Name: Generic, Broadcom WiFi (MIMO)
+Target-Profile-Packages: kmod-brcm-wl-mimo wlc nas kmod-wlcompat
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Default package set compatible with 802.11n (draft) hardware
+@@
+
+Target-Profile: None
+Target-Profile-Name: Generic, No WiFi
+Target-Profile-Packages: 
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Package set without WiFi support
+@@
+
+Target-Profile: USBGeneric
+Target-Profile-Name: Generic USB
+Target-Profile-Packages: kmod-brcm-wl kmod-usb-core kmod-usb-ohci kmod-usb2 wlc nas kmod-wlcompat
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+ Package set with for Broadcom routers with USB/USB2 (OHCI/EHCI) support.
+ Includes the WRTSL54GS, WL-520gU, WL-500gP v2, any other BCM5354 routers
+ with USB.
+@@
+
+Target-Profile: WL500G
+Target-Profile-Name: ASUS WL-500g
+Target-Profile-Packages: kmod-brcm-wl kmod-usb-core kmod-usb-ohci kmod-lp wlc nas kmod-wlcompat
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Package set optimized for the WL-500g with USB and parallel port support
+@@
+
+Target-Profile: WL500GD
+Target-Profile-Name: ASUS WL-500g Deluxe
+Target-Profile-Packages: kmod-brcm-wl kmod-usb-core kmod-usb-uhci kmod-usb2 wlc nas kmod-wlcompat
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Package set optimized for the WL-500g Deluxe with USB support
+@@
+
+Target-Profile: WL500GP
+Target-Profile-Name: ASUS WL-500g Premium
+Target-Profile-Packages: kmod-brcm-wl kmod-usb-core kmod-usb-uhci-iv kmod-usb2 wlc nas kmod-wlcompat
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Package set optimized for the WL-500g Premium with USB support
+@@
+
+Target-Profile: WL700GE
+Target-Profile-Name: WL-700gE
+Target-Profile-Packages: -ppp -ppp-mod-pppoe -kmod-ipt-nathelper -iptables -dnsmasq -bridge kmod-ide-core kmod-ide-aec62xx kmod-fs-ext3 fdisk e2fsprogs
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Minimal package set optimized for booting the WL-700gE from flash with a writable filesystem
+	and the utilities to create a new filesystem on the HDD
+@@
+
+Target-Profile: WLHDD
+Target-Profile-Name: WL-HDD
+Target-Profile-Packages: kmod-brcm-wl kmod-usb-core kmod-usb-ohci kmod-ide-core kmod-ide-pdc202xx wlc nas kmod-wlcompat kmod-rtc-rv5c386a
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Package set optimized for the WL-HDD with USB and IDE support
+@@
+
+Target-Profile: WRT300Nv11
+Target-Profile-Name: Linksys WRT300N v1.1
+Target-Profile-Packages: kmod-brcm-wl-mimo wlc nas kmod-wlcompat kmod-brcm-57xx
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Package set optimized for the WRT300N v1.1
+@@
+
+Target-Profile: WRT54G3G
+Target-Profile-Name: Linksys WRT54G3G
+Target-Profile-Packages: kmod-brcm-wl kmod-usb-core kmod-usb-ohci kmod-usb2 kmod-pcmcia-core kmod-pcmcia-serial kmod-nozomi comgt wlc nas kmod-wlcompat
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Package set optimized for the WRT54G3G with UMTS support
+@@
+
+Target-Profile: WRT610Nv1
+Target-Profile-Name: Linksys WRT610N v1
+Target-Profile-Packages: kmod-brcm-wl-mimo wlc nas kmod-wlcompat kmod-brcm-57xx kmod-usb-core kmod-usb-ohci kmod-usb2
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Package set optimized for the WRT610N v1
+@@
+
+
+Source-Makefile: target/linux/au1000/Makefile
+Target: au1000
+Target-Board: au1000
+Target-Kernel: 2.6
+Target-Name: RMI/AMD AU1x00
+Target-Path: /home/jow/devel/openwrt/10.03.1/brcm47xx
+Target-Arch: mipsel
+Target-Arch-Packages: au1000
+Target-Features: jffs2 pci usb
+Target-Depends: 
+Target-Optimization: -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time
+Linux-Version: 2.6.32.27
+Linux-Release: 1
+Linux-Kernel-Arch: mips
+Target-Description:
+	Build firmware for RMI/AMD Alchemy 1500,1550 boards
+	(e.g. 4G-Systems Mesh/Access Cube, DBAu1550 ...)
+@@
+Default-Packages: base-files libc libgcc busybox dropbear mtd uci opkg udevtrigger hotplug2 dnsmasq iptables ppp ppp-mod-pppoe kmod-ipt-nathelper firewall wpad-mini yamonenv
+Target: au1000/au1500
+Target-Board: au1000
+Target-Kernel: 2.6
+Target-Name: Au1500
+Target-Path: target/linux/au1000
+Target-Arch: mipsel
+Target-Arch-Packages: au1000
+Target-Features: gpio jffs2 pci usb
+Target-Depends: 
+Target-Optimization: -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time
+Linux-Version: 2.6.32.27
+Linux-Release: 1
+Linux-Kernel-Arch: mips
+Target-Description:
+	Build firmware for RMI/AMD Alchemy 1500,1550 boards
+	(e.g. 4G-Systems Mesh/Access Cube, DBAu1550 ...)
+@@
+Default-Packages: base-files libc libgcc busybox dropbear mtd uci opkg udevtrigger hotplug2 dnsmasq iptables ppp ppp-mod-pppoe kmod-ipt-nathelper firewall wpad-mini wpad-mini yamonenv
+Target-Profile: Atheros
+Target-Profile-Name: Atheros WiFi (default)
+Target-Profile-Packages: kmod-madwifi
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+
+@@
+
+Target-Profile: InternetBox
+Target-Profile-Name: T-Mobile InternetBox
+Target-Profile-Packages: kmod-madwifi ldconfig ldd ip tc wpa-supplicant wpa-cli
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Package set for the T-Mobile "InternetBox" (TMD SB1-S)
+@@
+
+Target-Profile: MeshCube
+Target-Profile-Name: MeshCube MTX-1
+Target-Profile-Packages: kmod-ath5k kmod-hostap kmod-hostap-pci kmod-net-prism54 kmod-usb-core kmod-usb-ohci kmod-usb-storage kmod-fs-ext3 kmod-fs-vfat ldconfig ldd hostap-utils ip tc wpa-supplicant wpa-cli kexec-tools
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Package set for the 4G MeshCube (MTX-1)
+@@
+
+Target: au1000/au1550
+Target-Board: au1000
+Target-Kernel: 2.6
+Target-Name: Au1550
+Target-Path: target/linux/au1000
+Target-Arch: mipsel
+Target-Arch-Packages: au1000
+Target-Features: jffs2 pci pcmcia usb
+Target-Depends: 
+Target-Optimization: -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time
+Linux-Version: 2.6.32.27
+Linux-Release: 1
+Linux-Kernel-Arch: mips
+Target-Description:
+	Build firmware for RMI/AMD Alchemy 1500,1550 boards
+	(e.g. 4G-Systems Mesh/Access Cube, DBAu1550 ...)
+@@
+Default-Packages: base-files libc libgcc busybox dropbear mtd uci opkg udevtrigger hotplug2 dnsmasq iptables ppp ppp-mod-pppoe kmod-ipt-nathelper firewall wpad-mini wpad-mini yamonenv
+Target-Profile: DBAu1550
+Target-Profile-Name: AMD DBAu1550 Development Kit
+Target-Profile-Packages: kmod-pcmcia kmod-pcmcia-au1000 kmod-usb-ohci kmod-usb-ehci
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+
+@@
+
+
+Source-Makefile: target/linux/ixp4xx/Makefile
+Target: ixp4xx
+Target-Board: ixp4xx
+Target-Kernel: 2.6
+Target-Name: Intel IXP4xx
+Target-Path: /home/jow/devel/openwrt/10.03.1/brcm47xx
+Target-Arch: armeb
+Target-Arch-Packages: ixp4xx
+Target-Features: gpio pci squashfs usb
+Target-Depends: 
+Target-Optimization: -Os -pipe -march=armv5te -mtune=xscale -funit-at-a-time
+Linux-Version: 2.6.32.27
+Linux-Release: 1
+Linux-Kernel-Arch: arm
+Target-Description:
+
+@@
+Default-Packages: base-files libc libgcc busybox dropbear mtd uci opkg udevtrigger hotplug2 dnsmasq iptables ppp ppp-mod-pppoe kmod-ipt-nathelper firewall ixp4xx-microcode fconfig
+Target: ixp4xx/generic
+Target-Board: ixp4xx
+Target-Kernel: 2.6
+Target-Name: Generic
+Target-Path: target/linux/ixp4xx
+Target-Arch: armeb
+Target-Arch-Packages: ixp4xx
+Target-Features: gpio pci squashfs usb
+Target-Depends: 
+Target-Optimization: -Os -pipe -march=armv5te -mtune=xscale -funit-at-a-time
+Linux-Version: 2.6.32.27
+Linux-Release: 1
+Linux-Kernel-Arch: arm
+Target-Description:
+	Build firmware images for ixp4xx based boards that boot from internal flash
+	(e.g : Linksys NSLU2, ...)
+@@
+Default-Packages: base-files libc libgcc busybox dropbear mtd uci opkg udevtrigger hotplug2 dnsmasq iptables ppp ppp-mod-pppoe kmod-ipt-nathelper firewall wpad-mini ixp4xx-microcode fconfig
+Target-Profile: Default
+Target-Profile-Name: Default Profile
+Target-Profile-Packages: kmod-madwifi
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Default IXP4xx Profile
+@@
+
+Target-Profile: Atheros-ath5k
+Target-Profile-Name: Atheros WiFi (atk5k)
+Target-Profile-Packages: kmod-ath5k
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Package set compatible with hardware using Atheros WiFi cards
+@@
+
+Target-Profile: NSLU2
+Target-Profile-Name: Linksys NSLU2
+Target-Profile-Packages: -wpad-mini kmod-scsi-core kmod-usb-core kmod-usb-ohci kmod-usb2 kmod-usb-storage kmod-fs-ext2 kmod-fs-ext3
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Package set optimized for the Linksys NSLU2
+@@
+
+Target-Profile: NAS100d
+Target-Profile-Name: Iomega NAS 100d
+Target-Profile-Packages: kmod-madwifi wireless-tools kmod-scsi-core kmod-ata-core kmod-ata-artop kmod-usb-core kmod-usb2 kmod-usb-storage kmod-fs-ext2 kmod-fs-ext3
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Package set optimized for the Iomega NAS 100d
+@@
+
+Target-Profile: DSMG600RevA
+Target-Profile-Name: DSM-G600 Rev A
+Target-Profile-Packages: kmod-via-velocity kmod-madwifi wireless-tools kmod-scsi-core kmod-ata-core kmod-ata-artop kmod-usb-core kmod-usb-uhci kmod-usb2 kmod-usb-storage kmod-fs-ext2 kmod-fs-ext3
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Package set optimized for the DSM-G600 Rev A
+@@
+
+Target-Profile: USR8200
+Target-Profile-Name: USRobotics USR8200
+Target-Profile-Packages: -wpad-mini kmod-scsi-core kmod-usb-core kmod-usb-uhci kmod-usb2 kmod-usb-storage kmod-fs-ext2 kmod-fs-ext3 kmod-ieee1394 kmod-ohci1394 kmod-sbp2
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Package set optimized for the USRobotics USR8200
+@@
+
+Target: ixp4xx/harddisk
+Target-Board: ixp4xx
+Target-Kernel: 2.6
+Target-Name: Internal Hard-Disk
+Target-Path: target/linux/ixp4xx
+Target-Arch: armeb
+Target-Arch-Packages: ixp4xx
+Target-Features: gpio pci squashfs usb
+Target-Depends: 
+Target-Optimization: -Os -pipe -march=armv5te -mtune=xscale -funit-at-a-time
+Linux-Version: 2.6.32.27
+Linux-Release: 1
+Linux-Kernel-Arch: arm
+Target-Description:
+	Build firmware images for ixp4xx based boards that boot directly from internal disk storage
+	(e.g : Freecom FSG-3, ...)
+@@
+Default-Packages: base-files libc libgcc busybox dropbear mtd uci opkg udevtrigger hotplug2 dnsmasq iptables ppp ppp-mod-pppoe kmod-ipt-nathelper firewall ixp4xx-microcode fconfig
+Target-Profile: FSG3
+Target-Profile-Name: Freecom FSG-3
+Target-Profile-Packages: kmod-madwifi wireless-tools kmod-usb-core kmod-usb-uhci kmod-usb2 kmod-usb-storage kmod-fs-ext2 kmod-fs-ext3 kmod-fs-reiserfs
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Package set optimized for the Freecom FSG-3
+@@
+
+
+Source-Makefile: target/linux/ppc40x/Makefile
+Target: ppc40x
+Target-Board: ppc40x
+Target-Kernel: 2.6
+Target-Name: AMCC/IBM PPC40x
+Target-Path: /home/jow/devel/openwrt/10.03.1/brcm47xx
+Target-Arch: powerpc
+Target-Arch-Packages: ppc40x
+Target-Features: gpio pci pcie squashfs usb
+Target-Depends: 
+Target-Optimization: -Os -pipe -funit-at-a-time -mcpu=405
+Linux-Version: 2.6.32.27
+Linux-Release: 1
+Linux-Kernel-Arch: powerpc
+Target-Description:
+	Build firmware images for AMCC/IBM PPC40x based boards.
+@@
+Default-Packages: base-files libc libgcc busybox dropbear mtd uci opkg udevtrigger hotplug2 dnsmasq iptables ppp ppp-mod-pppoe kmod-ipt-nathelper firewall
+
+Source-Makefile: target/linux/brcm63xx/Makefile
+Target: brcm63xx
+Target-Board: brcm63xx
+Target-Kernel: 2.6
+Target-Name: Broadcom BCM63xx
+Target-Path: /home/jow/devel/openwrt/10.03.1/brcm47xx
+Target-Arch: mips
+Target-Arch-Packages: brcm63xx
+Target-Features: atm gpio jffs2 pci pcmcia squashfs usb
+Target-Depends: 
+Target-Optimization: -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time
+Linux-Version: 2.6.32.27
+Linux-Release: 1
+Linux-Kernel-Arch: mips
+Target-Description:
+	Build firmware images for Broadcom based xDSL/routers
+	currently supports BCM6338, BCM6348 and BCM6358 based devices.
+	(e.g. Inventel Livebox, Siemens SE515, Neufbox 4)
+@@
+Default-Packages: base-files libc libgcc busybox dropbear mtd uci opkg udevtrigger hotplug2 dnsmasq iptables ppp ppp-mod-pppoe kmod-ipt-nathelper firewall wpad-mini kmod-switch gpioctl
+Target-Profile: Broadcom
+Target-Profile-Name: Broadcom WiFi (default)
+Target-Profile-Packages: kmod-b43
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Package set compatible with hardware using Broadcom WiFi cards
+@@
+
+Target-Profile: Atheros
+Target-Profile-Name: Atheros WiFi (default)
+Target-Profile-Packages: kmod-madwifi
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Package set compatible with hardware using Atheros WiFi cards
+@@
+
+Target-Profile: Ralink
+Target-Profile-Name: Ralink WiFi
+Target-Profile-Packages: kmod-rt61-pci
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+
+@@
+
+Target-Profile: NoWiFi
+Target-Profile-Name: No WiFi (BCM6338)
+Target-Profile-Packages: kmod-spi-bitbang kmod-bcm63xx-spi
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+
+@@
+
+Target-Profile: GW6X00
+Target-Profile-Name: Tecom GW6X00
+Target-Profile-Packages: kmod-b43 kmod-usb-core kmod-usb-ohci kmod-usb-storage kmod-fs-ext2 kmod-nls-cp437 kmod-nls-iso8859-1 kmod-fs-vfat kmod-loop e2fsprogs kmod-spi-bitbang kmod-bcm63xx-spi kmod-ipt-nathelper-extra kmod-input-gpio-buttons wpa-supplicant iw
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Package set compatible with the Tecom GW6000 and GW6200 based
+	on the BCM96348GW reference design.
+@@
+
+
+Source-Makefile: target/linux/atheros/Makefile
+Target: atheros
+Target-Board: atheros
+Target-Kernel: 2.6
+Target-Name: Atheros AR231x/AR5312
+Target-Path: /home/jow/devel/openwrt/10.03.1/brcm47xx
+Target-Arch: mips
+Target-Arch-Packages: atheros
+Target-Features: gpio jffs2 pci squashfs usb
+Target-Depends: 
+Target-Optimization: -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time
+Linux-Version: 2.6.30.10
+Linux-Release: 1
+Linux-Kernel-Arch: mips
+Target-Description:
+	Build firmware images for Atheros SoC boards
+@@
+Default-Packages: base-files libc libgcc busybox dropbear mtd uci opkg udevtrigger hotplug2 dnsmasq iptables ppp ppp-mod-pppoe kmod-ipt-nathelper firewall wpad-mini kmod-madwifi gpioctl swconfig
+
+Source-Makefile: target/linux/adm5120/Makefile
+Target: adm5120
+Target-Board: adm5120
+Target-Kernel: 2.6
+Target-Name: Infineon/ADMtek ADM5120
+Target-Path: /home/jow/devel/openwrt/10.03.1/brcm47xx
+Target-Arch: 
+Target-Arch-Packages: adm5120
+Target-Features: 
+Target-Depends: 
+Target-Optimization: -Os -pipe -funit-at-a-time
+Linux-Version: 2.6.32.27
+Linux-Release: 1
+Linux-Kernel-Arch: 
+Target-Description:
+
+@@
+Default-Packages: base-files libc libgcc busybox dropbear mtd uci opkg udevtrigger hotplug2 dnsmasq iptables ppp ppp-mod-pppoe kmod-ipt-nathelper firewall admswconfig wpad-mini kmod-input-core kmod-input-polldev kmod-input-gpio-buttons kmod-button-hotplug kmod-leds-gpio kmod-ledtrig-adm5120-switch
+Target: adm5120/router_le
+Target-Board: adm5120
+Target-Kernel: 2.6
+Target-Name: Little Endian
+Target-Path: target/linux/adm5120
+Target-Arch: mipsel
+Target-Arch-Packages: adm5120_mipsel
+Target-Features: gpio jffs2 pci squashfs tgz usb
+Target-Depends: 
+Target-Optimization: -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time
+Linux-Version: 2.6.32.27
+Linux-Release: 1
+Linux-Kernel-Arch: mips
+Target-Description:
+	Build firmware images for Infineon/ADMtek ADM5120 based boards
+	running in little-endian mode (e.g: RouterBoard RB1xx, Compex WP54x ...)
+@@
+Default-Packages: base-files libc libgcc busybox dropbear mtd uci opkg udevtrigger hotplug2 dnsmasq iptables ppp ppp-mod-pppoe kmod-ipt-nathelper firewall admswconfig wpad-mini kmod-input-core kmod-input-polldev kmod-input-gpio-buttons kmod-button-hotplug kmod-leds-gpio kmod-ledtrig-adm5120-switch
+Target-Profile: Generic
+Target-Profile-Name: Generic (default)
+Target-Profile-Packages: 
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Generic package set compatible with most boards.
+@@
+
+Target-Profile: CAS630
+Target-Profile-Name: Cellvision CAS-630 IP camera (Experimental)
+Target-Profile-Packages: -wpad-mini
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Package set optimized for the Cellvision CAS-630 device.
+@@
+
+Target-Profile: CAS630W
+Target-Profile-Name: Cellvision CAS-630W IP camera (Experimental)
+Target-Profile-Packages: -wpad-mini
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Package set optimized for the Cellvision CAS-630W device.
+@@
+
+Target-Profile: CAS670
+Target-Profile-Name: Cellvision CAS-670 IP camera (Experimental)
+Target-Profile-Packages: -wpad-mini
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Package set optimized for the Cellvision CAS-670 device.
+@@
+
+Target-Profile: CAS670W
+Target-Profile-Name: Cellvision CAS-670W IP camera (Experimental)
+Target-Profile-Packages: -wpad-mini
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Package set optimized for the Cellvision CAS-670 device.
+@@
+
+Target-Profile: CAS700
+Target-Profile-Name: Cellvision CAS-700 IP camera (Experimental)
+Target-Profile-Packages: -wpad-mini
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Package set optimized for the Cellvision CAS-700 device.
+@@
+
+Target-Profile: CAS700W
+Target-Profile-Name: Cellvision CAS-700W IP camera (Experimental)
+Target-Profile-Packages: -wpad-mini
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Package set optimized for the Cellvision CAS-700W device.
+@@
+
+Target-Profile: CAS771
+Target-Profile-Name: Cellvision CAS-771 IP camera (Experimental)
+Target-Profile-Packages: -wpad-mini kmod-video-cpia2 kmod-usb-ohci kmod-usb2 kmod-usb-audio
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Package set optimized for the Cellvision CAS-771 device.
+@@
+
+Target-Profile: CAS771W
+Target-Profile-Name: Cellvision CAS-771W IP camera (Experimental)
+Target-Profile-Packages: -wpad-mini kmod-video-cpia2 kmod-usb-ohci kmod-usb2 kmod-usb-audio kmod-rt2500-pci
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Package set optimized for the Cellvision CAS-771W device.
+@@
+
+Target-Profile: CAS790
+Target-Profile-Name: Cellvision CAS-790 IP camera (Experimental)
+Target-Profile-Packages: -wpad-mini
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Package set optimized for the Cellvision CAS-790 device.
+@@
+
+Target-Profile: CAS861
+Target-Profile-Name: Cellvision CAS-861 IP camera (Experimental)
+Target-Profile-Packages: -wpad-mini
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Package set optimized for the Cellvision CAS-861 device.
+@@
+
+Target-Profile: CAS861W
+Target-Profile-Name: Cellvision CAS-861W IP camera (Experimental)
+Target-Profile-Packages: kmod-rt2500-pci
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Package set optimized for the Cellvision CAS-861W device.
+@@
+
+Target-Profile: NFS101U
+Target-Profile-Name: Cellvision NFS-101U Network File Server (Experimental)
+Target-Profile-Packages: -wpad-mini kmod-usb-ohci kmod-usb2
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Package set optimized for the Cellvision NFS-101U device.
+@@
+
+Target-Profile: NFS101WU
+Target-Profile-Name: Cellvision NFS-101WU Network File Server (Experimental)
+Target-Profile-Packages: -wpad-mini kmod-usb-ohci kmod-usb2
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Package set optimized for the Cellvision NFS-101WU device.
+@@
+
+Target-Profile: NP27G
+Target-Profile-Name: Compex NP27G
+Target-Profile-Packages: kmod-madwifi kmod-usb-core kmod-usb-adm5120
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Package set optimized for the Compex NP27G.
+@@
+
+Target-Profile: NP28G
+Target-Profile-Name: Compex NP28G
+Target-Profile-Packages: kmod-madwifi kmod-usb-core kmod-usb-uhci kmod-usb2
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Package set optimized for the Compex NP28G.
+@@
+
+Target-Profile: WP54
+Target-Profile-Name: Compex WP54 family
+Target-Profile-Packages: kmod-madwifi
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Package set optimized for the Compex WP54 family.
+@@
+
+Target-Profile: BR6104K
+Target-Profile-Name: Edimax BR-6104K (Unofficial)
+Target-Profile-Packages: -wpad-mini
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Package set optimized for the Edimax BR-6104K
+@@
+
+Target-Profile: BR6104KP
+Target-Profile-Name: Edimax BR-6104KP (Unofficial)
+Target-Profile-Packages: -wpad-mini kmod-usb-core kmod-usb-adm5120
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Package set optimized for the Edimax BR-6104KP
+@@
+
+Target-Profile: BR6104WG
+Target-Profile-Name: Edimax BR-6104Wg (Unofficial, No WiFi)
+Target-Profile-Packages: -wpad-mini
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Package set optimized for the Edimax BR-6104Wg
+@@
+
+Target-Profile: BR6114WG
+Target-Profile-Name: Edimax BR-6114WG (Unofficial, No WiFi)
+Target-Profile-Packages: -wpad-mini
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Package set optimized for the Edimax BR-6114WG
+@@
+
+Target-Profile: EASY5120RT
+Target-Profile-Name: Infineon EASY 5120-RT Reference Board
+Target-Profile-Packages: kmod-usb-core kmod-usb-adm5120
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Package set optimized for the Infineon EASY 5120P-ATA Reference Board
+@@
+
+Target-Profile: EASY5120PATA
+Target-Profile-Name: Infineon EASY 5120P-ATA Reference Board
+Target-Profile-Packages: 
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+
+@@
+
+Target-Profile: PMUGW
+Target-Profile-Name: Motorola Powerline MU Gateway (EXPERIMENTAL)
+Target-Profile-Packages: 
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Package set optimized for the Motorola Powerline MU Gateway board
+@@
+
+Target-Profile: 5GXI
+Target-Profile-Name: Osbridge 5GXi/5XLi (Unofficial)
+Target-Profile-Packages: 
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Package set optimized for the OSBRiDGE 5GXi/5XLi boards.
+@@
+
+Target-Profile: RouterBoard
+Target-Profile-Name: Mikrotik RouterBoard 1xx family
+Target-Profile-Packages: kmod-madwifi kmod-pata-rb153-cf
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Package set compatible with the RouterBoard RB1xx devices. Contains RouterOS to OpenWrt\ installation scripts.
+@@
+
+Target: adm5120/router_be
+Target-Board: adm5120
+Target-Kernel: 2.6
+Target-Name: Big Endian
+Target-Path: target/linux/adm5120
+Target-Arch: mips
+Target-Arch-Packages: adm5120_mips
+Target-Features: gpio jffs2 pci squashfs usb
+Target-Depends: 
+Target-Optimization: -Os -pipe -mips32 -mtune=mips32 -funit-at-a-time
+Linux-Version: 2.6.32.27
+Linux-Release: 1
+Linux-Kernel-Arch: mips
+Target-Description:
+	Build firmware images for Infineon/ADMTek ADM5120 based boards
+	running in big-endian mode (e.g : ZyXEL Prestige 335WT ...)
+@@
+Default-Packages: base-files libc libgcc busybox dropbear mtd uci opkg udevtrigger hotplug2 dnsmasq iptables ppp ppp-mod-pppoe kmod-ipt-nathelper firewall admswconfig wpad-mini kmod-input-core kmod-input-polldev kmod-input-gpio-buttons kmod-button-hotplug kmod-leds-gpio kmod-ledtrig-adm5120-switch
+Target-Profile: Generic
+Target-Profile-Name: Generic (default)
+Target-Profile-Packages: 
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Generic package set compatible with most boards.
+@@
+
+Target-Profile: P334WT
+Target-Profile-Name: ZyXEL Prestige 334WT
+Target-Profile-Packages: kmod-acx
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Package set optimized for the ZyXEL Prestige 334WT board.
+@@
+
+Target-Profile: P335WT
+Target-Profile-Name: ZyXEL Prestige 335WT
+Target-Profile-Packages: kmod-acx kmod-usb-core kmod-usb-adm5120
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Package set optimized for the ZyXEL Prestige 335WT board.
+@@
+
+
+Source-Makefile: target/linux/ar71xx/Makefile
+Target: ar71xx
+Target-Board: ar71xx
+Target-Kernel: 2.6
+Target-Name: Atheros AR71xx/AR7240/AR913x
+Target-Path: /home/jow/devel/openwrt/10.03.1/brcm47xx
+Target-Arch: mips
+Target-Arch-Packages: ar71xx
+Target-Features: gpio jffs2 pci squashfs targz usb
+Target-Depends: 
+Target-Optimization: -Os -pipe -mips32r2 -mtune=mips32r2 -funit-at-a-time
+Linux-Version: 2.6.32.27
+Linux-Release: 1
+Linux-Kernel-Arch: mips
+Target-Description:
+	Build firmware images for Atheros AR71xx/AR913x based boards.
+@@
+Default-Packages: base-files libc libgcc busybox dropbear mtd uci opkg udevtrigger hotplug2 dnsmasq iptables ppp ppp-mod-pppoe kmod-ipt-nathelper firewall kmod-leds-gpio kmod-input-core kmod-input-polldev kmod-input-gpio-buttons kmod-button-hotplug swconfig kmod-ath9k wpad-mini
+Target-Profile: Default
+Target-Profile-Name: Default Profile (all drivers)
+Target-Profile-Packages: kmod-usb-core kmod-usb-ohci kmod-usb2 swconfig
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Default package set compatible with most boards.
+@@
+
+Target-Profile: DefaultNoWifi
+Target-Profile-Name: Default Profile (no WiFi)
+Target-Profile-Packages: -kmod-ath9k -wpad-mini
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Default package set compatible with most boards.
+@@
+
+Target-Profile: Madwifi
+Target-Profile-Name: Atheros WiFi (madwifi)
+Target-Profile-Packages: kmod-madwifi -kmod-ath9k
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Package set compatible with hardware using Atheros WiFi cards.
+@@
+
+Target-Profile: AP81
+Target-Profile-Name: Atheros AP81 reference board
+Target-Profile-Packages: kmod-usb-core kmod-usb2
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Package set optimized for the Atheros AP81 reference board.
+@@
+
+Target-Profile: AP83
+Target-Profile-Name: Atheros AP83 reference board
+Target-Profile-Packages: kmod-usb-core kmod-usb2 vsc7385-ucode-ap83 vsc7395-ucode-ap83
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Package set optimized for the Atheros AP83 reference board.
+@@
+
+Target-Profile: PB42
+Target-Profile-Name: Atheros PB42 reference board
+Target-Profile-Packages: kmod-usb-core kmod-usb-ohci kmod-usb2
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Package set optimized for the Atheros PB42 reference board.
+@@
+
+Target-Profile: PB44
+Target-Profile-Name: Atheros PB44 reference board
+Target-Profile-Packages: kmod-usb-core kmod-usb-ohci kmod-usb2 vsc7385-ucode-pb44 vsc7395-ucode-pb44
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Package set optimized for the Atheros PB44 reference board.
+@@
+
+Target-Profile: A02RBW300N
+Target-Profile-Name: Atlantis-Land A02-RB-W300N
+Target-Profile-Packages: 
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Package set optimized for the Atlantis-Land A02-RB-W300N.
+@@
+
+Target-Profile: WZRHPG300NH
+Target-Profile-Name: Buffalo WZR-HP-G300NH
+Target-Profile-Packages: kmod-usb-core kmod-usb2
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Package set optimized for the Buffalo WZR-HP-G300NH and WZR-HP-G301NH
+@@
+
+Target-Profile: WP543
+Target-Profile-Name: Compex WP543/WPJ543
+Target-Profile-Packages: kmod-usb-core kmod-usb-ohci kmod-usb2
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Package set optimized for the Compex WP543/WPJ543 boards.
+@@
+
+Target-Profile: DIR600A1
+Target-Profile-Name: D-Link DIR-600 rev. A1
+Target-Profile-Packages: 
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Package set optimized for the D-Link DIR-600 rev. A1.
+@@
+
+Target-Profile: DIR615C1
+Target-Profile-Name: D-Link DIR-615 rev. C1
+Target-Profile-Packages: 
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Package set optimized for the D-Link DIR-615 rev. C1.
+@@
+
+Target-Profile: DIR825B1
+Target-Profile-Name: D-Link DIR-825 rev. B1
+Target-Profile-Packages: kmod-usb-core kmod-usb2
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Package set optimized for the D-Link DIR-825 rev. B1.
+@@
+
+Target-Profile: WRT160NL
+Target-Profile-Name: Linksys WRT160NL
+Target-Profile-Packages: kmod-usb-core kmod-usb2 swconfig
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Package set optimized for the Linksys WRT160NL.
+@@
+
+Target-Profile: WRT400N
+Target-Profile-Name: Linksys WRT400N
+Target-Profile-Packages: 
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Package set optimized for the Linksys WRT400N.
+@@
+
+Target-Profile: WNDR3700
+Target-Profile-Name: NETGEAR WNDR3700
+Target-Profile-Packages: kmod-usb-core kmod-usb-ohci kmod-usb2
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Package set optimized for the NETGEAR WNDR3700
+@@
+
+Target-Profile: MZKW04NU
+Target-Profile-Name: Planex MZK-W04NU
+Target-Profile-Packages: kmod-usb-core kmod-usb2
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Package set optimized for the Planex MZK-W04NU.
+@@
+
+Target-Profile: MZKW300NH
+Target-Profile-Name: Planex MZK-W300NH
+Target-Profile-Packages: 
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Package set optimized for the Planex MZK-W300NH.
+@@
+
+Target-Profile: TLMR3420V1
+Target-Profile-Name: TP-LINK TL-MR3420 v1
+Target-Profile-Packages: kmod-ath9k wpad-mini kmod-usb-core kmod-usb2
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Package set optimized for the TP-LINK TL-MR3420 v1.
+@@
+
+Target-Profile: TLWR741NDV1
+Target-Profile-Name: TP-LINK TL-WR741ND v1
+Target-Profile-Packages: 
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Package set optimized for the TP-LINK TL-WR741ND v1.
+@@
+
+Target-Profile: TLWR740NV1
+Target-Profile-Name: TP-LINK TL-WR740N v1
+Target-Profile-Packages: 
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+    Package set optimized for the TP-LINK TL-WR740N v1.
+@@
+
+Target-Profile: TLWR841NV15
+Target-Profile-Name: TP-LINK TL-WR841N v1.5
+Target-Profile-Packages: 
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Package set optimized for the TP-LINK TL-WR841N v1.5.
+@@
+
+Target-Profile: TLWR841NDV3
+Target-Profile-Name: TP-LINK TL-WR841ND v3
+Target-Profile-Packages: 
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Package set optimized for the TP-LINK TL-WR841ND v3.
+@@
+
+Target-Profile: TLWR841NDV5
+Target-Profile-Name: TP-LINK TL-WR841ND v5
+Target-Profile-Packages: 
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Package set optimized for the TP-LINK TL-WR841ND v5.
+@@
+
+Target-Profile: TLWR941NDV2
+Target-Profile-Name: TP-LINK TL-WR941ND v2
+Target-Profile-Packages: 
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Package set optimized for the TP-LINK TL-WR941ND v2.
+@@
+
+Target-Profile: TLWR941NDV3
+Target-Profile-Name: TP-LINK TL-WR941ND v3
+Target-Profile-Packages: 
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Package set optimized for the TP-LINK TL-WR941ND v3.
+@@
+
+Target-Profile: TLWR941NDV4
+Target-Profile-Name: TP-LINK TL-WR941ND v4
+Target-Profile-Packages: 
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Package set optimized for the TP-LINK TL-WR941ND v4.
+@@
+
+Target-Profile: TLWR1043NDV1
+Target-Profile-Name: TP-LINK TL-WR1043ND v1
+Target-Profile-Packages: kmod-usb-core kmod-usb2
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Package set optimized for the TP-LINK TL-WR1043ND v1.
+@@
+
+Target-Profile: TEW632BRP
+Target-Profile-Name: TRENDNet TEW-632BRP
+Target-Profile-Packages: 
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Package set optimized for the TRENDNet TEW-632BRP.
+@@
+
+Target-Profile: TEW652BRP
+Target-Profile-Name: TRENDNet TEW-652BRP
+Target-Profile-Packages: 
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Package set optimized for the TRENDNet TEW-652BRP.
+@@
+
+Target-Profile: UBNTRS
+Target-Profile-Name: Ubiquiti RouterStation
+Target-Profile-Packages: kmod-usb-core kmod-usb-ohci kmod-usb2
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Package set optimized for the Ubiquiti RouterStation.
+@@
+
+Target-Profile: UBNTRSPRO
+Target-Profile-Name: Ubiquiti RouterStation Pro
+Target-Profile-Packages: kmod-usb-core kmod-usb-ohci kmod-usb2
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Package set optimized for the Ubiquiti RouterStation Pro.
+@@
+
+Target-Profile: UBNT
+Target-Profile-Name: Ubiquiti Products
+Target-Profile-Packages: kmod-usb-core kmod-usb-ohci kmod-usb2
+Target-Profile-Config: 
+
+@@
+Target-Profile-Description:
+	Build images for all Ubiquiti products (including LS-SR71, RouterStation and RouterStation Pro)
+@@
+
+
+Source-Makefile: target/linux/kirkwood/Makefile
+Target: kirkwood
+Target-Board: kirkwood
+Target-Kernel: 2.6
+Target-Name: Marvell Kirkwood
+Target-Path: /home/jow/devel/openwrt/10.03.1/brcm47xx
+Target-Arch: arm
+Target-Arch-Packages: kirkwood
+Target-Features: gpio pci targz usb
+Target-Depends: 
+Target-Optimization: -Os -pipe -march=armv5te -mtune=xscale -funit-at-a-time
+Linux-Version: 2.6.30.10
+Linux-Release: 1
+Linux-Kernel-Arch: arm
+Target-Description:
+
+@@
+Default-Packages: base-files libc libgcc busybox dropbear mtd uci opkg udevtrigger hotplug2 dnsmasq iptables ppp ppp-mod-pppoe kmod-ipt-nathelper firewall 
+
+Source-Makefile: target/linux/orion/Makefile
+Target: orion
+Target-Board: orion
+Target-Kernel: 2.6
+Target-Name: Marvell Orion
+Target-Path: /home/jow/devel/openwrt/10.03.1/brcm47xx
+Target-Arch: arm
+Target-Arch-Packages: orion
+Target-Features: gpio pci squashfs usb
+Target-Depends: 
+Target-Optimization: -Os -pipe -march=armv5t -mtune=xscale -funit-at-a-time
+Linux-Version: 2.6.32.27
+Linux-Release: 1
+Linux-Kernel-Arch: arm
+Target-Description:
+
+@@
+Default-Packages: base-files libc libgcc busybox dropbear mtd uci opkg udevtrigger hotplug2 dnsmasq iptables ppp ppp-mod-pppoe kmod-ipt-nathelper firewall kmod-ath9k wpad-mini
+Target: orion/generic
+Target-Board: orion
+Target-Kernel: 2.6
+Target-Name: Generic
+Target-Path: target/linux/orion
+Target-Arch: arm
+Target-Arch-Packages: orion
+Target-Features: gpio pci squashfs usb
+Target-Depends: 
+Target-Optimization: -Os -pipe -march=armv5t -mtune=xscale -funit-at-a-time
+Linux-Version: 2.6.32.27
+Linux-Release: 1
+Linux-Kernel-Arch: arm
+Target-Description:
+	Build firmware images for orion based boards that boot from internal flash
+@@
+Default-Packages: base-files libc libgcc busybox dropbear mtd uci opkg udevtrigger hotplug2 dnsmasq iptables ppp ppp-mod-pppoe kmod-ipt-nathelper firewall kmod-ath9k wpad-mini
+Target: orion/harddisk
+Target-Board: orion
+Target-Kernel: 2.6
+Target-Name: Internal Hard-Disk
+Target-Path: target/linux/orion
+Target-Arch: arm
+Target-Arch-Packages: orion
+Target-Features: gpio pci squashfs usb
+Target-Depends: 
+Target-Optimization: -Os -pipe -march=armv5t -mtune=xscale -funit-at-a-time
+Linux-Version: 2.6.32.27
+Linux-Release: 1
+Linux-Kernel-Arch: arm
+Target-Description:
+	Build firmware images for orion based boards that boot directly from internal disk storage
+	(e.g : Freecom DataTank 2, ...)
+@@
+Default-Packages: base-files libc libgcc busybox dropbear mtd uci opkg udevtrigger hotplug2 dnsmasq iptables ppp ppp-mod-pppoe kmod-ipt-nathelper firewall kmod-ath9k wpad-mini
+
