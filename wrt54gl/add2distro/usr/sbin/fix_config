@@ -1,0 +1,43 @@
+#!/bin/sh
+# this script overwrites some existing config files with the new ones
+# from our package cause it seems there is currently no way to 
+# do this by specifying some magic switch in the package config
+# it only runs once and deletes itself after fixing the system config
+#########################################################################
+
+new_files="/etc/config/firewall /etc/config/dhcp /etc/firewall.user /etc/iproute2/rt_tables /etc/openvpn/pass.txt /etc/openvpn/cyberghost.ovpn /etc/resolv.conf /etc/config/network /etc/config/firewall /etc/config/dhcp /etc/config/wireless /etc/iproute2/rt_tables /etc/init.d/vpn /etc/hotplug.d/button/buttons /etc/firewall.user"
+
+changes=0
+
+echo "freepackets wrt54gl - check for new config"
+
+# loop the files and mv if needed
+for f in $new_files ; do
+
+	if [ -f "${f}-opkg" ] ; then
+		echo "fix ${f}-opkg"
+		if [ -f $f ] ; then
+			mv $f "${f}.old"
+			echo "save old file to ${f}.old"
+		fi
+		mv "${f}-opkg" $f
+		changes=1
+	fi
+done
+
+# for some reasons the stock config sometimes is added as rt_tables-opkg
+# add entry for the vpn table if needed
+if [ $(cat /etc/iproute2/rt_tables | grep "vpn" | grep -v "#" | wc -l) -eq 0 ] ; then
+	echo "1  vpn" >> /etc/iproute2/rt_tables
+	changes=1
+fi
+
+# remove fix file
+rm /usr/sbin/fix_config
+
+if [ $changes -ne 0 ] ; then
+	echo "config repaired - reboot now"
+	sleep 2 
+	reboot
+fi
+
