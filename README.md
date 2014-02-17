@@ -20,17 +20,28 @@ TP-Link TL-WR1043ND and D-LINK DIR-615 in the next weeks.
 
 ## configure and build the firmware
 
-There is a folder for each supported platform. Common directories are:
+Each supported platform has its own documentation. You can find it in
+<platform>/doc/. Please read it.
+
+The configuration for the VPN tunnel and access point is stored in the
+folder *private* inside of the root directory of the project (means: the
+configuration is common for all platforms) and contains the following files:
 ```
-- doc: contains the device specific documentation
 - private: contains private configuration used to build the firmware
     |------->password.txt        VPN passwords (mandatory)
     |------->openvpn.ovpn        VPN configuration (mandatory)
     |------->system.conf         system configuration (optional)
 ```
 
-To build the firmware image you must provide the configuration files in the 
-private folder.
+You can create a folder called private_local to store your personal local 
+configuration for the firmware build. To be able to build the firmware image 
+you must provide the configuration files in the private or private_local folder. 
+
+**Note 1:** The config placed in the private_local folder supersedes the one 
+given in the private folder. The private_folder is ignored by git.
+
+**Note 2:** On checkout the private folder contains a example config that can 
+not be used to build a running system.
 
 The password.txt file contains the credentials used for the authentication
 against the VPN service. The first line contains the user name, the second
