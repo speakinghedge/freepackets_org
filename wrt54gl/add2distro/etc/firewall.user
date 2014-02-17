@@ -1,0 +1,77 @@
+# custom config of the firewall
+# should be safe to be run more the once
+# there is a lot of work to be done here - do it, add some security
+###################################################################
+
+# clean all tables
+iptables -F -t filter
+iptables -F -t nat
+iptables -F -t mangle
+iptables -F -t raw
+
+# default policy
+iptables -P INPUT DROP  -t filter
+iptables -P FORWARD DROP -t filter
+iptables -P OUTPUT ACCEPT -t filter
+
+# basic rules 
+# all okay for localhost
+iptables -A INPUT -i lo -j ACCEPT
+iptables -A OUTPUT -o lo -j ACCEPT
+
+# accept DHCP from the public subnet
+iptables -A INPUT -t filter -i br-lan_vpn -p udp --dport 67:68 --sport 67:68 -j ACCEPT
+
+# disable ping from wan side
+iptables -A INPUT -p icmp -i eth0.2 --icmp-type echo-request -j DROP
+# limit ping
+iptables -A INPUT -p icmp --icmp-type echo-request -m limit --limit 45/min --limit-burst 8 -j ACCEPT
+iptables -A INPUT -p icmp --icmp-type echo-request -j DROP
+
+# drop all cross packets
+iptables -A INPUT -t filter --source 192.168.2.0/24 --dest 192.168.3.0/24 -j DROP
+
+# drop all packets from eth0.0/wl0 using wrong addresses
+iptables -A INPUT -t filter ! --source 192.168.2.0/24 -i br-lan_vpn -j DROP
+
+# drop all other packets from public subnet directed directly to the ap
+iptables -A INPUT -t filter --source 192.168.2.0/24 --dest 192.168.2.1 -j DROP
+
+# accept all remaing packets on the internal interfaces
+iptables -A INPUT -i br-lan_direct
+iptables -A INPUT -i eth0.1
+iptables -A INPUT ! -i eth0.2 -t filter -j ACCEPT
+
+# forward traffic from and to private subnet
+iptables -A FORWARD --source 192.168.3.0/24 -j ACCEPT
+iptables -A FORWARD --dest 192.168.3.0/24 -j ACCEPT
+# forward traffic from and to public subnet
+iptables -A FORWARD --source 192.168.2.0/24 -j ACCEPT
+iptables -A FORWARD --dest 192.168.2.0/24 -j ACCEPT
+
+# only accept traffic from outside if it belongs to an ongoing connection
+iptables -A INPUT -m conntrack -i eth0.2 --ctstate ESTABLISHED,RELATED -j ACCEPT
+
+# mark all packets comming from the public subnet (connected to the bridge)
+iptables -A PREROUTING -t mangle -i br-lan_vpn -j MARK --set-mark 23
+
+# use routing table vpn for all vpn clients
+# this prevents us from accidently used connections via the main routing table 
+# if the vpn connection is dead
+# bonus: we can switch the used routing table (dont forget change the
+# masquerade rule in chain masq@nat)
+while [ 1 ] ; do
+	ip rule del fwmark 23 2>/dev/null
+	if [ $? -ne 0 ] ; then
+		break
+	fi
+done
+ip rule add fwmark 23 table vpn
+
+# add a chain that handles masquerading
+iptables -F masq 2>/dev/null
+iptables -N masq -t nat 2>/dev/null
+iptables -A POSTROUTING -t nat -j masq
+# masq all traffic not comming from the private net by default
+iptables -A masq -t nat ! --source 192.168.2.0/24 -o eth0.2 -j MASQUERADE
+
