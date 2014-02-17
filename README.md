@@ -137,18 +137,17 @@ For further information check the doc folder of your platform and have a look
 at freepackets.org.
 
 ## next steps
--add support for TP-Link TL-WR1043ND
--create statitic interface / package
--convert config to UCI
--create UCI interface
+* add support for TP-Link TL-WR1043ND
+* create statitic interface / package
+* convert config to UCI
+* create UCI interface
 
 ## Todo
--check that iptable rules are sufficient
+* check that iptable rules are sufficient
 
 ## Known issues
--spontaneous death of the tunnel - add "manual" keep alive ping?
--config can not be changed over the UCI interface
--adre
+* spontaneous death of the tunnel - add "manual" keep alive ping?
+* config can not be changed over the UCI interface
 
 ## Important
 
