@@ -1,0 +1,12 @@
+#!/bin/sh
+# script that handles button press
+# used to switch the routing for the clients in the public subnet
+# between vpn tunnel and direct access
+
+if [ "$ACTION" = "pressed" ] && [ "$BUTTON" = "ses" ] ; then
+	if [ -f /var/lock/public_net_vpn ] ; then
+		(sleep 1; public_net_direct) &
+	else
+		(sleep 1; public_net_vpn) &
+	fi
+fi
