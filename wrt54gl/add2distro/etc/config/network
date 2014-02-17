@@ -1,0 +1,70 @@
+# freepackets.org
+# network config containing the following setup
+#
+#   CPU
+#   eth0                                   
+#    |                                   <<|>>
+#    |       WAN      VPNized|  LAN        |
+#  +---+    +---+    +---+---+---+---+	+---+
+#  | 5 |    | 4 |    | 3 | 2 | 1 | 0 |	|   |
+#  +---+    +---+    +---+---+---+---+  +---+
+#           VLAN1      VLAN0   VLAN2     VLAN0
+#           eth0.2     eth0.0  eth0.1     WL0
+#
+#       VPNized: 192.168.2.0/24
+#       WL0:     192.168.2.0/24
+#       LAN:     192.168.3.0/24
+
+config 'switch' 'eth0'
+        option 'enable' '1'
+
+# port 2,3 - labled 2,1
+config 'switch_vlan' 'eth0_0'
+        option 'device' 'eth0'
+        option 'vlan' '0'
+        option 'ports' '2 3 5'
+
+# port 0,1 - labled 4,3
+config 'switch_vlan' 'eth0_1'
+        option 'device' 'eth0'
+        option 'vlan' '1'
+        option 'ports' '0 1 5'
+
+# port 4 - labled WAN
+config 'switch_vlan' 'eth0_2'
+        option 'device' 'eth0'
+        option 'vlan' '2'
+        option 'ports' '4 5'
+
+# uses config attached to interface lan_vpn (see /etc/config/wireless)
+config 'interface' 'wifi_if'
+        option 'proto' 'none'
+        option 'ifname' 'wlan0'
+
+config 'interface' 'lan_vpn'
+        option 'type' 'bridge'
+        option 'ifname' 'eth0.0 wlan0'
+        option 'proto' 'static'
+        option 'ipaddr' '192.168.2.1'
+        option 'netmask' '255.255.255.0'
+
+config 'interface' 'lan_direct'
+	option 'type' 'bridge'
+        option 'device' 'eth0.1'
+        option 'proto' 'static'
+        option 'ipaddr' '192.168.3.1'
+        option 'netmask' '255.255.255.0'
+
+config 'interface' 'wan'
+        option 'ifname' 'eth0.2'
+        option 'proto' 'dhcp'
+
+config 'interface' 'vpn_if'
+        option 'proto' 'none'
+        option 'ifname' 'tun0'
+
+config 'interface' 'loopback'
+        option 'ifname' 'lo'
+        option 'proto' 'static'
+        option 'ipaddr' '127.0.0.1'
+        option 'netmask' '255.0.0.0'
