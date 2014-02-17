@@ -1,0 +1,26 @@
+#!/bin/sh /etc/rc.common
+# persistent run @ startup: /etc/init.d/vpn enable
+NAME=vpn_shepherd
+PROG=/usr/sbin/vpn_shepherd
+START=99
+STOP=1
+
+start() {
+	# check for new config (after install) and fix the system config
+	# if needed (this may force a reboot)
+	if [ -f /usr/sbin/fix_config ] ; then
+		fix_config
+	fi
+	vpn_shepherd &
+	vpn_led &
+}                 
+ 
+stop() {          
+	killall vpn_shepherd
+	killall vpn_led
+}
+
+restart() {
+	stop
+	start
+}
