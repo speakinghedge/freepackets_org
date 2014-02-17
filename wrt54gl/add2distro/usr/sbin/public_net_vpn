@@ -1,0 +1,27 @@
+#!/bin/sh
+# use vpn connection to the internet for the public subnet
+#############################################################
+logger "route public subnet over vpn connection"
+rm -f /var/lock/public_net_direct
+touch /var/lock/public_net_vpn
+
+# add masquerading for all over eth0.2 (wan) but _NOT_ for clients of the 
+# public subnet. the filter for 192.168.2.0/24 is just a safety net in case 
+# something else went terribly wrong. also masq everything from the public
+# subnet over tun0
+iptables -F masq -t nat
+iptables -A masq -t nat ! --source 192.168.2.0/24 -o eth0.2 -j MASQUERADE
+iptables -A masq -t nat --source 192.168.2.0/24 -o tun0 -j MASQUERADE
+
+while [ 1 ] ; do
+	ip rule del fwmark 23 2>/dev/null
+	if [ $? -ne 0 ] ; then
+		break
+	fi
+done
+# use vpn routing table for clients from the public subnet
+ip rule add fwmark 23 table vpn
+
+ip route flush cache
+
+
