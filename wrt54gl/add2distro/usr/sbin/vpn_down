@@ -1,0 +1,10 @@
+#!/bin/sh
+# vpn up script
+# delete routing entries in table vpn
+logger "running cleanup for openvpn"
+ip route flush table vpn
+ip route flush cache
+
+# per default - route public subnet over vpn connection to prevent
+# (accidently) packet flow over the direct connection
+/usr/sbin/public_net_vpn
