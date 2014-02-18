@@ -1,0 +1,88 @@
+#!/bin/sh
+# small statistic script 
+# if called without a parameter, it will output some stats to the console
+# if called with an http-URL as parameter, the stats are send to that 
+# URL using a http-get with the following scheme: 
+# URL?ATTRIBUTES
+# ATTRIBUTES :=
+#       dk	device_key		access key			
+#	st	script_startup_time	used as some kind of session key
+#	p	packtes			since last successfull report
+#	u	users			currently connected to the WLAN
+#	a	service_active		VPN tunnel active
+#
+# when sendig the stats to a remote service, the packet counter only contains
+# the packets since the last time the stats where successfully transmitted to
+# the remote service. the remote servic must return the string 1 if the
+# transmission was accepted.
+#
+# the script uses a small temporary file (/tmp/freepackets.stats) to keep
+# track of the packet statistics
+#
+# remote_stats_key can be used to protect the statistic service
+#
+#########################
+tun_dev="tun0"
+stat_file="/tmp/freepackets.stats"
+remote_stats_key="thisissave!1!"
+
+pidof openvpn 1>/dev/null
+if [ $? -eq 0 ] ; then
+	openvpn="running"
+else
+	openvpn="not running"
+fi
+rx_pckt=$(ip -s link show br-lan_vpn | awk 'NR==4 { print $2}')
+tx_pckt=$(ip -s link show br-lan_vpn | awk 'NR==6 { print $2}')
+tun_cfg=$(ip addr show dev $tun_dev | grep inet | awk ' { print "local:"$2" remote:"$4}')
+if [ $? -ne 0 ] ; then
+	tun_cfg="not present/configured"
+fi
+wlan_clients=$(iw dev wlan0 station dump | grep Station | wc -l)
+if [ -f /var/lock/public_net_vpn ] ; then
+	routing_over="VPN tunnel"
+	vpn_on=1
+else
+	routing_over="direct connection"
+	vpn_on=0
+fi
+
+if [ -f $stat_file ] ; then
+	. $stat_file
+else
+	start_time=$(date +%s -d "`date -Iseconds | tr "T+" " " | cut -d " " -f 1-2`")
+	old_local_rx=0
+	old_local_tx=0
+	old_remote_rx=0
+	old_remote_tx=0
+fi
+
+write_stats() {
+	echo "start_time=$1" > $stat_file
+	echo "old_local_rx=$2" >> $stat_file
+	echo "old_local_tx=$3" >> $stat_file
+	echo "old_remote_rx=$4" >> $stat_file
+	echo "old_remote_tx=$5" >> $stat_file
+}
+
+# local output
+if [ $# -eq 0 ] ; then
+
+	echo "openvpn: ${openvpn}"
+	echo "$tun_dev addresses: $tun_cfg" 
+	echo "connected WLAN clients: $wlan_clients"
+	echo "public subnet uses: $routing_over"
+	echo "packets over tunnel"
+	echo "   since startup   rx: ${rx_pckt} tx: ${tx_pckt} total: $(( $rx_pckt + $tx_pckt))"
+	echo "   since last call rx: $(($rx_pckt - $old_local_rx)) tx: $(($tx_pckt - $old_local_tx)) total: $(( $rx_pckt + $tx_pckt - ( $old_local_rx + $old_local_tx ) ))"
+	write_stats $start_time $rx_pckt $tx_pckt $old_remote_rx $old_remote_tx	
+else
+# send to remote stats service
+	wget -qO- "$1?dk=${remote_stats_key}&st=${start_time}&p=$(( $rx_pckt + $tx_pckt - ( $old_remote_rx + $old_remote_tx ) ))&u=${wlan_clients}&a=${vpn_on}" > /tmp/freepackets.resp
+	if [ $? -eq 0 -a "X$(cat /tmp/freepackets.resp)"="X1"  ] ; then
+		write_stats $start_time $old_local_rx $old_local_tx $rx_pckt $tx_pckt
+	else
+		write_stats $start_time $old_local_rx $old_local_tx $old_remote_rx $old_remote_tx
+	fi
+fi
+
