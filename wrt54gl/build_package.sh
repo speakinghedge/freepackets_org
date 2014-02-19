@@ -10,6 +10,7 @@ source=add2distro
 target=package
 private_local="../private_local"
 private="../private"
+report_conf="vpn_report"
 
 # options to be disabled in open vpn config file
 openvpn_disable="explicit-exit-notify dhcp-renew dhcp-release"
@@ -35,21 +36,6 @@ done
 # clean
 rm -rf ${target}
 mkdir ${target}
-
-# control part ###############################################################
-echo "create control.tar.gz"
-cd ${source}
-find etc/ -type f | grep -v "~" | sed 's/^/\//' > CONTROL/conffiles
-cd CONTROL
-#echo "#!/bin/sh" > postinst
-#echo "\"" >> postinst
-#echo "echo \"use me to do some nasty things after install\"" >> postinst
-#echo "exit 0" >> postinst
-#chmod a+x postinst
-tar czf control.tar.gz control conffiles #postinst
-cp control.tar.gz ../../${target}/
-cd ../..
-echo "DONE."
 
 # data part ##################################################################
 echo "create data.tar.gz"
@@ -80,8 +66,10 @@ if [ $(cat ../${private}/password.txt | wc -l) -lt 2 ] ; then
 	exit 1
 fi
 cp -f ../${private}/password.txt etc/openvpn/password.txt
+chmod 600 etc/openvpn/password.txt
 
 # apply private config
+rm -f etc/config/$report_conf
 if [ -f ../${private}/system.conf ] ; then
 	for v in $sys_conf_vars ; do
 		unset $v
@@ -97,12 +85,41 @@ if [ -f ../${private}/system.conf ] ; then
 	else
 		sed -i "/key/c\#no password protection - enable password by setting option 'key' <password>" etc/config/wireless
 	fi
+	# stats reporting - config
+	if [ ! -z "$stats_url" -a ! -z "$stats_interval" -a ! -z "$stats_key" ] ; then
+
+		if [ $stats_interval -eq 0 ] ; then
+			echo
+			echo "stats_interval invalid. must be > 0."
+			echo
+			exit 1
+		fi
+		echo "stats_url=$stats_url" > etc/config/$report_conf
+		echo "stats_interval=$stats_interval" >> etc/config/$report_conf
+		echo "stats_key=$stats_key" >> etc/config/$report_conf
+		chmod a+rx etc/config/$report_conf
+	fi
 fi
 
 # create tar...
 tar --exclude *~ -czf  data.tar.gz etc usr
 cp data.tar.gz ../${target}/
 cd ..
+echo "DONE."
+
+# control part ###############################################################
+echo "create control.tar.gz"
+cd ${source}
+find etc/ -type f | grep -v "~" | sed 's/^/\//' > CONTROL/conffiles
+cd CONTROL
+#echo "#!/bin/sh" > postinst
+#echo "\"" >> postinst
+#echo "echo \"use me to do some nasty things after install\"" >> postinst
+#echo "exit 0" >> postinst
+#chmod a+x postinst
+tar czf control.tar.gz control conffiles #postinst
+cp control.tar.gz ../../${target}/
+cd ../..
 echo "DONE."
 
 echo "create ipkg"

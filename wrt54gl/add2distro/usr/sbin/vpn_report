@@ -1,0 +1,21 @@
+#!/bin/sh
+# report script
+###############
+if [ -f /etc/config/vpn_report ] ; then
+	. /etc/config/vpn_report
+else
+	logger "vpn_report missing /etc/config/vpn_report"
+	exit 1
+fi
+
+if [ -z "$stats_url" -o -z "$stats_interval" ] ; then
+
+	logger "vpn_report invalid configuration"
+	exit 1
+fi
+
+while [ 1 ] ; do
+	
+	sleep $stats_interval
+	/usr/sbin/ap_stats $stats_url $stats_key
+done

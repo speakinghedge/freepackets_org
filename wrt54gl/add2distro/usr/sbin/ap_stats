@@ -5,11 +5,14 @@
 # URL using a http-get with the following scheme: 
 # URL?ATTRIBUTES
 # ATTRIBUTES :=
-#       dk	device_key		access key			
-#	st	script_startup_time	used as some kind of session key
+#       dk	device_key 		access key
+#	st	script_startup_time   	used as some kind of session key
 #	p	packtes			since last successfull report
 #	u	users			currently connected to the WLAN
 #	a	service_active		VPN tunnel active
+#
+# If a second parameter is given, it is used as the device key (without that
+# parameter the device key is an empty string).
 #
 # when sendig the stats to a remote service, the packet counter only contains
 # the packets since the last time the stats where successfully transmitted to
@@ -24,7 +27,7 @@
 #########################
 tun_dev="tun0"
 stat_file="/tmp/freepackets.stats"
-remote_stats_key="thisissave!1!"
+remote_stats_key=""
 
 pidof openvpn 1>/dev/null
 if [ $? -eq 0 ] ; then
@@ -78,6 +81,10 @@ if [ $# -eq 0 ] ; then
 	write_stats $start_time $rx_pckt $tx_pckt $old_remote_rx $old_remote_tx	
 else
 # send to remote stats service
+	if [ $# -eq 2 ] ; then
+		remote_stats_key=$2
+	fi
+
 	wget -qO- "$1?dk=${remote_stats_key}&st=${start_time}&p=$(( $rx_pckt + $tx_pckt - ( $old_remote_rx + $old_remote_tx ) ))&u=${wlan_clients}&a=${vpn_on}" > /tmp/freepackets.resp
 	if [ $? -eq 0 -a "X$(cat /tmp/freepackets.resp)"="X1"  ] ; then
 		write_stats $start_time $old_local_rx $old_local_tx $rx_pckt $tx_pckt

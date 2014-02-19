@@ -11,13 +11,21 @@ start() {
 	if [ -f /usr/sbin/fix_config ] ; then
 		fix_config
 	fi
-	vpn_shepherd &
-	vpn_led &
+
+	# start primary service scripts
+	(vpn_shepherd &) &
+	(vpn_led &) &
+
+	# if there is a report config start the script
+	if [ -f /etc/config/vpn_report ] ; then
+		(vpn_report &) &
+	fi
 }                 
  
 stop() {          
-	killall vpn_shepherd
-	killall vpn_led
+	killall vpn_shepherd 2>/dev/null
+	killall vpn_led 2>/dev/null
+	killall vpn_report 2>/dev/null
 }
 
 restart() {

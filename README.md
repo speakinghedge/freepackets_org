@@ -103,21 +103,30 @@ The optional system.conf can be used to customize the firmware by using the
 following configuration parameters:
 * ap_ssid - set the ssid of the access point, default: freepackets_org
 * ap_pwd  - set the password needed to authenticate for using the wireless AP, default: no password
+* stats_url - http-URL to send the stats to
+* stats_interval - interval for sending the stats (in seconds)
+* stats_key - key to be used to authenticate when accessing the remote stats service
 
 Sample file:
 ```
 ap_ssid="freepackets_01"
 ap_pwd="123456"
+stats_url="http://statistics.freepackets.org"
+stats_interval=300
+stats_key="thisissave!1!"
 ```
 
-Accesspoints ssid is freepackets_01, password 123456.
+Accesspoints ssid is freepackets_01, password 123456. Statistics are send to
+statistics.freepackets.org every 5 minutes using the key thisissave!1!.
 
 ```
 ap_ssid="free_internet"
 ap_pwd=""
 ```
 
-Accesspoints ssid is free_internet, no password protection.
+Accesspoints ssid is free_internet, no password protection. No stats report
+to a remote stats service (all three stats attributes must be configured to
+activate reporting).
 
 Now build the firmware by running build_firmware.sh located in the platforms
 root directory. If everything goes well, the firmware images relevant for
