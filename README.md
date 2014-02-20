@@ -24,23 +24,23 @@ Each supported platform has its own documentation. You can find it in
 <platform>/doc/. Please read it.
 
 The configuration for the VPN tunnel and access point is stored in the
-folder *private* inside of the root directory of the project (means: the
+folder *config* inside of the root directory of the project (means: the
 configuration is common for all platforms) and contains the following files:
 ```
-- private: contains private configuration used to build the firmware
+- config: contains configuration used to build the firmware
     |------->password.txt        VPN passwords (mandatory)
     |------->openvpn.ovpn        VPN configuration (mandatory)
     |------->system.conf         system configuration (optional)
 ```
 
-You can create a folder called private_local to store your personal local 
+You can create a folder called config_local to store your personal local 
 configuration for the firmware build. To be able to build the firmware image 
-you must provide the configuration files in the private or private_local folder. 
+you must provide the configuration files in the config or config_local folder. 
 
-**Note 1:** The config placed in the private_local folder supersedes the one 
-given in the private folder. The private_folder is ignored by git.
+**Note 1:** The config placed in the config_local folder supersedes the one 
+given in the config folder. The config_folder is ignored by git.
 
-**Note 2:** On checkout the private folder contains a example config that can 
+**Note 2:** On checkout the config folder contains a example config that can 
 not be used to build a running system.
 
 The password.txt file contains the credentials used for the authentication

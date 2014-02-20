@@ -8,8 +8,8 @@
 
 source=add2distro
 target=package
-private_local="../private_local"
-private="../private"
+config_local="../config_local"
+config="../config"
 report_conf="vpn_report"
 
 # options to be disabled in open vpn config file
@@ -17,11 +17,11 @@ openvpn_disable="explicit-exit-notify dhcp-renew dhcp-release"
 sys_conf_vars="ap_ssid ap_pwd"
 
 # if a local config exists - take it
-if [ -d $private_local ] ; then
-	echo "*** use local private files to build package ***"
-	private=$private_local
+if [ -d $config_local ] ; then
+	echo "*** use local config files to build package ***"
+	config=$config_local
 fi
-mandatory_files="${source}/CONTROL/control ${private}/password.txt ${private}/openvpn.ovpn"
+mandatory_files="${source}/CONTROL/control ${config}/password.txt ${config}/openvpn.ovpn"
 
 # prepare ####################################################################
 for f in $mandatory_files ; do
@@ -45,7 +45,7 @@ chmod a+x etc/init.d/vpn
 chmod a+x etc/firewall.user
 
 # copy openvpn config and disable unsupported options
-cp -f ../${private}/openvpn.ovpn etc/openvpn/openvpn.ovpn
+cp -f ../${config}/openvpn.ovpn etc/openvpn/openvpn.ovpn
 for d in $openvpn_disable ; do
 	if [ $(cat etc/openvpn/openvpn.ovpn | grep $d | wc -l) -ne 0 ] ; then
 		echo "openvpn config - disable option: $d"
@@ -58,23 +58,23 @@ sed -i "/auth-user-pass/c\auth-user-pass /etc/openvpn/password.txt" etc/openvpn/
 sed -i "/script-security/c\script-security 3" etc/openvpn/openvpn.ovpn
 
 # copy password file
-if [ $(cat ../${private}/password.txt | wc -l) -lt 2 ] ; then 
+if [ $(cat ../${config}/password.txt | wc -l) -lt 2 ] ; then 
 	echo
-	echo "invalid private password file. must contain at least two lines."
+	echo "invalid config password file. must contain at least two lines."
 	echo "first line is used as username, second one is treated as password"
 	echo
 	exit 1
 fi
-cp -f ../${private}/password.txt etc/openvpn/password.txt
+cp -f ../${config}/password.txt etc/openvpn/password.txt
 chmod 600 etc/openvpn/password.txt
 
-# apply private config
+# apply config config
 rm -f etc/config/$report_conf
-if [ -f ../${private}/system.conf ] ; then
+if [ -f ../${config}/system.conf ] ; then
 	for v in $sys_conf_vars ; do
 		unset $v
 	done
-	. ../${private}/system.conf
+	. ../${config}/system.conf
 	# ap ssid
 	if [ ! -z "$ap_ssid" ] ; then
 		sed -i "/ssid/c\ \toption 'ssid' '$ap_ssid'" etc/config/wireless
@@ -132,7 +132,7 @@ echo "DONE."
 cat ../${source}/CONTROL/control > Packages
 echo "MD5Sum: $(md5sum freepackets_wrt54gl.ipk | cut -d " " -f1)" >> Packages
 
-rm control.tar.gz data.tar.gz debian-binary
+rm -f control.tar.gz data.tar.gz debian-binary
 
 echo
 echo "package freepackets_wrt54.ipg build in ${target}"

@@ -1,5 +1,5 @@
 *~
-private_local/
+config_local/
 control.tar.gz
 data.tar.gz
 wrt54gl/add2distro/etc/openvpn/openvpn.ovpn
