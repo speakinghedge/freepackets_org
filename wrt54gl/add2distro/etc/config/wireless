@@ -10,6 +10,6 @@ config 'wifi-iface'
 	option 'mode' 'ap'
  	option 'ssid' 'freepackets_org'
 	option 'encryption' 'psk2+tkip+ccmp'
- 	option 'key' 'thisissave'
+	option 'key' 'thisissafe'
 	option 'network' 'lan_vpn'
 

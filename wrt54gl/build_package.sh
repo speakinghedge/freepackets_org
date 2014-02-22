@@ -81,9 +81,14 @@ if [ -f ../${config}/system.conf ] ; then
 	fi
 	# ap pwd
 	if [ ! -z "$ap_pwd" ] ; then
-		sed -i "/key/c\ \toption 'key' '$ap_pwd'" etc/config/wireless
+		sed -i "/key/c\\\toption 'key' '$ap_pwd'" etc/config/wireless
+		sed -i "/encryption/c\\\toption 'encryption' 'psk2+tkip+ccmp'" etc/config/wireless
 	else
+		echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+		echo "!!! NO PASSWORD SET - WIRELESS ENCRYPTION DISABLED !!!"
+		echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
 		sed -i "/key/c\#no password protection - enable password by setting option 'key' <password>" etc/config/wireless
+		sed -i "/encryption/c\\\toption 'encryption' 'none'" etc/config/wireless
 	fi
 	# stats reporting - config
 	if [ ! -z "$stats_url" -a ! -z "$stats_interval" -a ! -z "$stats_key" ] ; then
