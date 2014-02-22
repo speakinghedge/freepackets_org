@@ -18,6 +18,7 @@ config dnsmasq
 	list server             '8.8.8.8'
 	list server             '141.56.1.1'
 	list server             '67.221.255.31'
+        option force            1
 
 config dhcp lan_vpn_dhcp
         option interface	lan_vpn
