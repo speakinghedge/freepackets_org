@@ -17,7 +17,7 @@ config dnsmasq
         #list bogusnxdomain     '64.94.110.11'
 	list server             '8.8.8.8'
 	list server             '141.56.1.1'
-	list server             '67.221.255.31'
+	list server             '209.244.0.3'
         option force            1
 
 config dhcp lan_vpn_dhcp
@@ -28,9 +28,9 @@ config dhcp lan_vpn_dhcp
         option start		100
         option limit    	150
         option leasetime        12h
-        list "dhcp_option" 	"6,79.141.160.23"
-        list "dhcp_option" 	"6,79.141.167.14"
-        list "dhcp_option" 	"6,67.221.255.31"
+        list "dhcp_option" 	"6,95.169.183.219"
+        list "dhcp_option" 	"6,89.41.60.38"
+        list "dhcp_option" 	"6,37.221.175.198"
 
 config dhcp lan_direct_dhcp
 	# dhcp for lan direct connected to wan
